@@ -1,0 +1,96 @@
+# ============================================
+# 开发环境 Docker Compose 配置
+# ============================================
+# 用于快速启动 MySQL 和 Redis 服务
+# 使用方法: docker-compose -f docker-compose.dev.yml up -d
+
+version: '3.8'
+
+services:
+  # MySQL 数据库
+  mysql:
+    image: mysql:8.0
+    container_name: campus-order-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: campus_order
+      MYSQL_USER: campus_user
+      MYSQL_PASSWORD: campus_password
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-time-zone=+08:00
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - campus-network
+
+  # Redis 缓存
+  redis:
+    image: redis:7-alpine
+    container_name: campus-order-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - campus-network
+
+  # Redis Commander (Redis管理界面)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: campus-order-redis-commander
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - campus-network
+
+  # phpMyAdmin (MySQL管理界面)
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: campus-order-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      UPLOAD_LIMIT: 100M
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - campus-network
+
+volumes:
+  mysql-data:
+    driver: local
+  redis-data:
+    driver: local
+
+networks:
+  campus-network:
+    driver: bridge
