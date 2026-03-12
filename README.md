@@ -82,13 +82,8 @@ npm install
 npm run dev
 ```
 
-### 默认访问地址
-- 前端：http://localhost:5173
-- 后端API：http://localhost:9090
-- API文档：http://localhost:9090/swagger-ui.html
-
 ### 测试账号
-- 管理员：admin / admin123
+- 管理员：admin/123456
 - 商户：需要在管理端创建
 
 ## 项目结构
@@ -110,10 +105,6 @@ campus-order/
 ├── docs/                  # 项目文档
 └── docker-compose.dev.yml # Docker 配置
 ```
-
-## API 文档
-
-启动后端后访问：http://localhost:9090/swagger-ui.html
 
 ## 注意事项
 
