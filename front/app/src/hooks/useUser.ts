@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 用户数据Hook
  * 封装用户信息和登录状态的管理
  */
@@ -110,7 +110,7 @@ export function useRegister() {
   const [error, setError] = useState<Error | null>(null);
 
   const register = async (data: {
-    phone: string;
+    email: string;
     password: string;
     verifyCode: string;
     nickname?: string;

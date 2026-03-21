@@ -37,11 +37,11 @@ export function Stores() {
         id: merchant.id,
         name: merchant.name,
         logo: merchant.logo,
-        rating: merchant.rating,
+        rating: Number(merchant.rating) || 0,
         monthlySales: merchant.salesVolume || 0,
         deliveryTime: merchant.deliveryTime || 30,
         distance: merchant.distance || 0,
-        minPrice: merchant.minPrice || 0,
+        minPrice: merchant.minOrderAmount || merchant.minPrice || 0,
         tags: [],
         categories: []
       }));

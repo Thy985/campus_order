@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 订单数据Hook
  * 封装订单列表和详情的获取逻辑
  */
@@ -39,9 +39,17 @@ export function useOrders(options: UseOrdersOptions = {}) {
       }
       
       const response = await orderApi.getOrders(params);
-      
-      // 适配数据
-      const adaptedList = response.orderList?.map(adaptOrder) || [];
+
+      // 适配数据 - 处理订单列表和订单明细映射
+      const orderItemsMap = response.orderItemsMap || {};
+      const adaptedList = response.orderList?.map((order: any) => {
+        // 将订单明细合并到订单对象中
+        const orderWithItems = {
+          ...order,
+          items: orderItemsMap[order.id] || []
+        };
+        return adaptOrder(orderWithItems);
+      }) || [];
       setOrders(adaptedList);
       setTotal(response.total || 0);
     } catch (err) {
@@ -128,8 +136,17 @@ export function useCreateOrder() {
 
   const createOrder = async (data: {
     merchantId: number;
-    items: { productId: number; quantity: number }[];
+    orderItems: { 
+      productId: number; 
+      productName: string;
+      productPrice: number;
+      quantity: number;
+      productImage?: string;
+    }[];
     remark?: string;
+    deliveryAddress?: string;
+    contactPhone?: string;
+    contactName?: string;
   }) => {
     try {
       setLoading(true);

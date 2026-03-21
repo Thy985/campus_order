@@ -127,10 +127,12 @@ export function AdminOrders() {
                       <td className="py-4 px-4 font-medium text-gray-900">#{order.orderNo}</td>
                       <td className="py-4 px-4 text-gray-600">{order.merchantName}</td>
                       <td className="py-4 px-4 text-gray-600">
-                        {order.items.map(item => `${item.name} x${item.quantity}`).join('，')}
+                        {order.items && order.items.length > 0 
+                          ? order.items.map(item => `${item.name || '未知商品'} x${item.quantity || 0}`).join('，')
+                          : '暂无商品信息'}
                       </td>
                       <td className="py-4 px-4 font-medium text-orange-500">
-                        ¥{order.totalAmount}
+                        ¥{(order.totalAmount || 0).toFixed(2)}
                       </td>
                       <td className="py-4 px-4">{getStatusBadge(order.status)}</td>
                       <td className="py-4 px-4 text-gray-500">

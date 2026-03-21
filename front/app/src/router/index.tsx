@@ -21,9 +21,13 @@ const Orders = lazy(() => import('@/pages/user/Orders').then(m => ({ default: m.
 const OrderDetail = lazy(() => import('@/pages/user/OrderDetail').then(m => ({ default: m.OrderDetail })));
 const Profile = lazy(() => import('@/pages/user/Profile').then(m => ({ default: m.Profile })));
 const Register = lazy(() => import('@/pages/user/Register').then(m => ({ default: m.Register })));
+const ForgotPassword = lazy(() => import('@/pages/user/ForgotPassword').then(m => ({ default: m.ForgotPassword })));
 const Payment = lazy(() => import('@/pages/user/Payment').then(m => ({ default: m.PaymentPage })));
 const AddressList = lazy(() => import('@/pages/user/AddressList').then(m => ({ default: m.AddressList })));
 const AddressEdit = lazy(() => import('@/pages/user/AddressEdit').then(m => ({ default: m.AddressEdit })));
+const Notifications = lazy(() => import('@/pages/user/Notifications').then(m => ({ default: m.Notifications })));
+const Coupons = lazy(() => import('@/pages/user/Coupons').then(m => ({ default: m.Coupons })));
+const ReviewOrder = lazy(() => import('@/pages/user/ReviewOrder').then(m => ({ default: m.ReviewOrder })));
 
 // Merchant Pages - 懒加载
 const MerchantDashboard = lazy(() => import('@/pages/merchant/Dashboard').then(m => ({ default: m.MerchantDashboard })));
@@ -201,13 +205,13 @@ export const router = createBrowserRouter([
           </AuthGuard>
         ) 
       },
-      { 
-        path: 'payment/:orderNo', 
+      {
+        path: 'payment/:orderId',
         element: (
           <AuthGuard>
             <Payment />
           </AuthGuard>
-        ) 
+        )
       },
       { 
         path: 'addresses', 
@@ -233,6 +237,30 @@ export const router = createBrowserRouter([
           </AuthGuard>
         ) 
       },
+      { 
+        path: 'notifications', 
+        element: (
+          <AuthGuard>
+            <Notifications />
+          </AuthGuard>
+        ) 
+      },
+      { 
+        path: 'review/:orderId', 
+        element: (
+          <AuthGuard>
+            <ReviewOrder />
+          </AuthGuard>
+        ) 
+      },
+      { 
+        path: 'coupons', 
+        element: (
+          <AuthGuard>
+            <Coupons />
+          </AuthGuard>
+        ) 
+      },
     ],
   },
   {
@@ -241,6 +269,7 @@ export const router = createBrowserRouter([
     children: [
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
+      { path: 'forgot-password', element: <ForgotPassword /> },
     ],
   },
   {

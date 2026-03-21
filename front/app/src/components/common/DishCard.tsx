@@ -54,6 +54,7 @@ export function DishCard({ dish, index = 0, merchantId = 0, merchantName = '' }:
           className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-105"
           aspectRatio="4/3"
           priority={index < 6}
+          placeholderColor="#f3f4f6"
         />
         
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">

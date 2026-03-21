@@ -8,7 +8,14 @@ export * as paymentApi from './payment';
 export * as fileApi from './file';
 export * as addressApi from './address';
 export * as wsApi from './websocket';
-export * as adminApi from './admin';    // 管理端接口
+export * as adminApi from './admin';
+export * as couponApi from './coupon';
+export * as notificationApi from './notification';
+export * as reviewApi from './review';
+
+// 重新导出类型
+export type { Review, ReviewListResponse, CreateReviewRequest } from './review';
+export type { Coupon, UserCoupon } from './coupon';
 
 // 默认导出 request 实例
 export { default as request } from '@/lib/request';

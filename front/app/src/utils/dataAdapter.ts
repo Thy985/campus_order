@@ -30,7 +30,7 @@ export function adaptMerchant(backendData: any): Store {
     monthlySales: Number(merchant.salesVolume) || 0,
     deliveryTime: Number(merchant.deliveryTime) || 30,
     distance: Number(merchant.distance) || 0,
-    minPrice: Number(merchant.minPrice) || 0,
+    minPrice: Number(merchant.minOrderAmount) || Number(merchant.minPrice) || 0,
     tags: merchant.tags || [],
     categories: merchant.categories || [],
     banner: merchant.banner || merchant.logo || DEFAULT_STORE_IMAGE,
@@ -98,39 +98,67 @@ export function convertOrderStatusToBackend(frontendStatus: OrderStatus): number
 
 /**
  * 将后端订单数据转换为前端Order格式
+ * 处理两种结构：扁平Order 和 OrderDetailResponse{order, orderItems}
  */
 export function adaptOrder(backendData: any): Order {
   if (!backendData) return null as any;
-  
-  return {
-    id: Number(backendData.id),
-    orderNo: backendData.orderNo,
-    merchantId: Number(backendData.merchantId),
-    merchantName: backendData.merchantName || '',
-    merchantLogo: backendData.merchantLogo,
-    userId: Number(backendData.userId),
-    status: adaptOrderStatus(backendData.status),
-    payStatus: backendData.payStatus,
-    totalAmount: Number(backendData.totalAmount) || 0,
-    actualAmount: Number(backendData.actualAmount) || Number(backendData.totalAmount) || 0,
-    remark: backendData.remark || '',
-    items: (backendData.items || []).map((item: any) => ({
+
+  // 处理 OrderDetailResponse 嵌套结构
+  const order = backendData.order || backendData;
+
+  // 处理 orderItems - 可能在顶层或嵌套在 orderItems 数组中
+  let items = backendData.items || order.items || [];
+  if (backendData.orderItems && Array.isArray(backendData.orderItems)) {
+    items = backendData.orderItems.map((item: any) => ({
+      productId: Number(item.productId),
+      name: item.productName || item.name,
+      price: Number(item.price),
+      quantity: Number(item.quantity),
+      image: item.productImage || item.image,
+    }));
+  } else if (Array.isArray(items)) {
+    items = items.map((item: any) => ({
       productId: Number(item.productId),
       name: item.name,
       price: Number(item.price),
       quantity: Number(item.quantity),
       image: item.image,
-    })),
-    address: backendData.address ? {
-      contactName: backendData.address.contactName,
-      contactPhone: backendData.address.contactPhone,
-      detail: backendData.address.detail,
+    }));
+  }
+
+  // 处理 address
+  let address = backendData.address || order.address;
+  if (address && typeof address === 'object' && !address.detail) {
+    address = {
+      contactName: address.contactName,
+      contactPhone: address.contactPhone,
+      detail: address.detail || order.deliveryAddress,
+    };
+  }
+
+  return {
+    id: Number(order.id),
+    orderNo: order.orderNo,
+    merchantId: Number(order.merchantId),
+    merchantName: order.merchantName || backendData.merchantName || '',
+    merchantLogo: order.merchantLogo,
+    userId: Number(order.userId),
+    status: adaptOrderStatus(order.status),
+    payStatus: order.payStatus,
+    totalAmount: Number(order.totalAmount) || 0,
+    actualAmount: Number(order.actualAmount) || Number(order.totalAmount) || 0,
+    remark: order.remark || '',
+    items: items,
+    address: address ? {
+      contactName: address.contactName,
+      contactPhone: address.contactPhone,
+      detail: address.detail || order.deliveryAddress,
     } : undefined,
-    createTime: backendData.createTime || backendData.createdAt || new Date().toISOString(),
-    updateTime: backendData.updateTime,
-    payTime: backendData.payTime,
-    acceptTime: backendData.acceptTime,
-    finishTime: backendData.finishTime,
+    createTime: order.createTime || order.createdAt || new Date().toISOString(),
+    updateTime: order.updateTime,
+    payTime: order.payTime,
+    acceptTime: order.acceptTime,
+    finishTime: order.finishTime,
   };
 }
 

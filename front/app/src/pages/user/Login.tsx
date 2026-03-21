@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Phone, Lock, Eye, EyeOff, Store, ArrowLeft } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useUserStore } from '@/stores/userStore';
@@ -10,11 +10,15 @@ import { UserType } from '@/types';
 
 export function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useUserStore();
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // 获取登录前要跳转的页面
+  const from = (location.state as { from?: string })?.from || '/';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +47,7 @@ export function Login() {
       login(response.user as any, response.token);
 
       toast.success('登录成功');
-      
+
       // 根据用户类型跳转到不同页面
       const userType = response.user.userType;
       if (userType === UserType.MERCHANT) {
@@ -51,8 +55,8 @@ export function Login() {
       } else if (userType === UserType.ADMIN) {
         navigate('/admin');
       } else {
-        // NORMAL (0) 或其他类型跳转到首页
-        navigate('/');
+        // NORMAL (0) 或其他类型跳转到之前页面或首页
+        navigate(from);
       }
     } catch (error) {
       // 错误已在 api client 中统一处理

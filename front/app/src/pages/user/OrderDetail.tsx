@@ -124,22 +124,26 @@ export function OrderDetail() {
         <Card className="p-4">
           <h3 className="font-semibold mb-4">订单商品</h3>
           <div className="space-y-3">
-            {order.items.map((item, idx) => (
-              <div key={idx} className="flex justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="text-gray-900">{item.name}</span>
-                  <span className="text-gray-500">x{item.quantity}</span>
+            {order.items && order.items.length > 0 ? (
+              order.items.map((item, idx) => (
+                <div key={idx} className="flex justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-900">{item.name || '未知商品'}</span>
+                    <span className="text-gray-500">x{item.quantity || 0}</span>
+                  </div>
+                  <span className="text-gray-900">
+                    ¥{((item.price || 0) * (item.quantity || 0)).toFixed(2)}
+                  </span>
                 </div>
-                <span className="text-gray-900">
-                  ¥{(item.price * item.quantity).toFixed(2)}
-                </span>
-              </div>
-            ))}
+              ))
+            ) : (
+              <div className="text-gray-500 text-center py-4">暂无商品信息</div>
+            )}
           </div>
           <div className="border-t mt-4 pt-4 space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-gray-500">商品总价</span>
-              <span>¥{order.totalAmount.toFixed(2)}</span>
+              <span>¥{(order.totalAmount || 0).toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-500">配送费</span>
@@ -147,7 +151,7 @@ export function OrderDetail() {
             </div>
             <div className="flex justify-between font-semibold text-lg pt-2 border-t">
               <span>实付金额</span>
-              <span className="text-orange-500">¥{order.totalAmount.toFixed(2)}</span>
+              <span className="text-orange-500">¥{(order.totalAmount || 0).toFixed(2)}</span>
             </div>
           </div>
         </Card>
@@ -177,15 +181,30 @@ export function OrderDetail() {
         {/* Actions */}
         {order.status === OrderStatus.PENDING_PAYMENT && (
           <div className="flex gap-3">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="flex-1 rounded-xl"
               onClick={handleCancel}
             >
               取消订单
             </Button>
-            <Button className="flex-1 rounded-xl">
+            <Button
+              className="flex-1 rounded-xl"
+              onClick={() => navigate(`/payment/${order.id}`)}
+            >
               立即支付
+            </Button>
+          </div>
+        )}
+        
+        {/* 评价按钮 - 已完成订单 */}
+        {order.status === OrderStatus.COMPLETED && (
+          <div className="flex gap-3">
+            <Button 
+              className="flex-1 rounded-xl bg-orange-500 hover:bg-orange-600"
+              onClick={() => navigate(`/review/${order.id}`)}
+            >
+              评价订单
             </Button>
           </div>
         )}

@@ -47,7 +47,7 @@ export function MerchantOrders() {
     const matchesTab = activeTab === 'all' || (activeTabConfig?.status !== undefined && order.status === activeTabConfig.status);
     const matchesSearch = 
       order.orderNo.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      order.items.some(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      (order.items && order.items.some(item => (item.name || '').toLowerCase().includes(searchQuery.toLowerCase())));
     return matchesTab && matchesSearch;
   });
 
@@ -220,10 +220,12 @@ function OrderItem({ order, onAccept, onReject, onComplete, onView }: OrderItemP
             </span>
           </div>
           <div className="mt-2 text-sm text-gray-600">
-            {order.items.map(item => `${item.name} x${item.quantity}`).join('，')}
+            {order.items && order.items.length > 0 
+              ? order.items.map(item => `${item.name || '未知商品'} x${item.quantity || 0}`).join('，')
+              : '暂无商品信息'}
           </div>
           <div className="mt-1 text-lg font-bold text-orange-500">
-            ¥{order.totalAmount}
+            ¥{(order.totalAmount || 0).toFixed(2)}
           </div>
         </div>
         <div className="flex items-center gap-2">

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, Lock, Eye, EyeOff, Store, User, ArrowLeft } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Store, User, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,14 +9,14 @@ import { sendVerifyCode, register } from '@/api/auth';
 
 // 常量定义
 const VERIFICATION_CODE_LENGTH = 6;
-const PHONE_REGEX = /^1[3-9]\d{9}$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const COUNTDOWN_SECONDS = 60;
 
 export function Register() {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
-    phone: '',
+    email: '',
     password: '',
     confirmPassword: '',
     verifyCode: '',
@@ -34,9 +34,9 @@ export function Register() {
   // 验证单个字段
   const validateField = (name: string, value: string): string => {
     switch (name) {
-      case 'phone':
-        if (!value) return '请输入手机号';
-        if (!PHONE_REGEX.test(value)) return '手机号格式不正确';
+      case 'email':
+        if (!value) return '请输入邮箱';
+        if (!EMAIL_REGEX.test(value)) return '邮箱格式不正确';
         return '';
       case 'password':
         if (!value) return '请输入密码';
@@ -74,9 +74,9 @@ export function Register() {
 
   // 发送验证码
   const handleSendCode = async () => {
-    const phoneError = validateField('phone', formData.phone);
-    if (phoneError) {
-      setErrors(prev => ({ ...prev, phone: phoneError }));
+    const emailError = validateField('email', formData.email);
+    if (emailError) {
+      setErrors(prev => ({ ...prev, email: emailError }));
       return;
     }
 
@@ -84,7 +84,7 @@ export function Register() {
     
     try {
       // 调用发送验证码API
-      await sendVerifyCode(formData.phone);
+      await sendVerifyCode(formData.email);
 
       setCountdown(COUNTDOWN_SECONDS);
       const timer = setInterval(() => {
@@ -126,7 +126,7 @@ export function Register() {
     try {
       // 调用注册API
       await register({
-        phone: formData.phone,
+        email: formData.email,
         password: formData.password,
         verifyCode: formData.verifyCode,
         nickname: formData.nickname,
@@ -165,25 +165,24 @@ export function Register() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
-          {/* Phone Input */}
+          {/* Email Input */}
           <div className="space-y-1.5">
-            <Label htmlFor="phone">手机号</Label>
+            <Label htmlFor="email">邮箱</Label>
             <div className="relative">
-              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <Input
-                id="phone"
-                type="tel"
-                placeholder="请输入手机号"
-                value={formData.phone}
-                onChange={(e) => handleChange('phone', e.target.value)}
+                id="email"
+                type="email"
+                placeholder="请输入邮箱"
+                value={formData.email}
+                onChange={(e) => handleChange('email', e.target.value)}
                 className="pl-10"
-                maxLength={11}
-                aria-invalid={!!errors.phone}
-                aria-describedby={errors.phone ? 'phone-error' : undefined}
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
               />
             </div>
-            {errors.phone && (
-              <p id="phone-error" className="text-sm text-red-500">{errors.phone}</p>
+            {errors.email && (
+              <p id="email-error" className="text-sm text-red-500">{errors.email}</p>
             )}
           </div>
 

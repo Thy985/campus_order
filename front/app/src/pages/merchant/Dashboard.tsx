@@ -128,7 +128,7 @@ export function MerchantDashboard() {
                     <div>
                       <p className="font-medium text-gray-900">订单 #{order.orderNo}</p>
                       <p className="text-sm text-gray-500 mt-1">
-                        {order.items.length} 件商品 · ¥{order.totalAmount}
+                        {order.items?.length || 0} 件商品 · ¥{(order.totalAmount || 0).toFixed(2)}
                       </p>
                     </div>
                     <Badge className="bg-orange-100 text-orange-600">

@@ -22,7 +22,7 @@ export interface PaginatedResponse<T> {
 // ==================== 认证模块 ====================
 
 export interface RegisterRequest {
-  phone: string;
+  email: string;
   password: string;
   verifyCode: string;
   nickname?: string;
@@ -40,7 +40,7 @@ export interface LoginResponse {
 }
 
 export interface VerifyCodeRequest {
-  phone: string;
+  email: string;
 }
 
 // ==================== 用户模块 ====================
@@ -164,6 +164,8 @@ export interface Order {
   orderNo: string;
   userId: number;
   merchantId: number;
+  merchantName?: string;
+  merchantLogo?: string;
   totalAmount: number;
   actualAmount: number;
   remark?: string;
@@ -173,6 +175,14 @@ export interface Order {
   acceptTime?: string;
   finishTime?: string;
   createTime: string;
+  updateTime?: string;
+  // 订单详情相关字段
+  items?: OrderItem[];
+  address?: {
+    contactName: string;
+    contactPhone: string;
+    detail: string;
+  };
 }
 
 export enum OrderStatus {
@@ -202,13 +212,13 @@ export const OrderStatusConfig: Record<OrderStatus, { label: string; color: stri
 };
 
 export interface OrderItem {
-  id: number;
+  id?: number;
   productId: number;
-  productName: string;
-  productImage?: string;
-  productPrice: number;
+  name: string;
+  image?: string;
+  price: number;
   quantity: number;
-  totalPrice: number;
+  totalPrice?: number;
 }
 
 export interface CreateOrderRequest {
@@ -273,21 +283,6 @@ export interface Category {
   name: string;
   icon?: string;
   sortOrder?: number;
-}
-
-// ==================== 购物车模块 (前端本地存储) ====================
-
-export interface CartItem {
-  product: Product;
-  quantity: number;
-  selected: boolean;
-}
-
-export interface Cart {
-  merchantId: number;
-  items: CartItem[];
-  totalCount: number;
-  totalPrice: number;
 }
 
 // ==================== 错误码 ====================

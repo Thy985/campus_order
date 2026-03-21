@@ -6,6 +6,10 @@ export interface PaymentResponse {
   payFormHtml?: string;
 }
 
+export interface QrCodePaymentParams {
+  qrCodeUrl?: string;
+}
+
 export interface WechatPayParams {
   appId?: string;
   timeStamp?: string;
@@ -88,7 +92,15 @@ export async function querySimulatedPayStatus(orderNo: string): Promise<number> 
  * POST /api/payment/alipay/create
  */
 export async function createAlipayPayment(orderId: number): Promise<string> {
-  return post<string>('/api/payment/alipay/create', { orderId });
+  return post<string>('/api/payment/alipay/create', null, { params: { orderId } });
+}
+
+/**
+ * 创建支付宝扫码支付（二维码支付）
+ * POST /api/payment/alipay/qrcode
+ */
+export async function createAlipayQrCodePayment(orderId: number): Promise<string> {
+  return post<string>('/api/payment/alipay/qrcode', null, { params: { orderId } });
 }
 
 /**

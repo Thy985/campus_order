@@ -106,6 +106,8 @@ tags:
     description: 消息通知相关接口
   - name: 文件服务
     description: 文件上传下载相关接口
+  - name: 优惠券服务
+    description: 优惠券领取和使用相关接口
   - name: 商家端
     description: 商家后台管理相关接口
   - name: 管理员端
@@ -342,11 +344,11 @@ paths:
         - 认证服务
       summary: 获取验证码
       description: |
-        发送短信验证码到指定手机号。
+        发送验证码到指定手机号或邮箱。
         
-        **开发环境特殊说明**：
-        - 开发环境（profile=dev）会在响应中返回验证码，方便测试
-        - 生产环境不会返回验证码，需要通过短信获取
+        **验证码发送规则**：
+        - 手机号：开发环境直接返回验证码
+        - 邮箱：真实发送邮件（开发环境也会返回验证码方便测试）
         
         **验证码有效期**：5分钟
       operationId: getVerifyCode
@@ -356,13 +358,15 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - phone
               properties:
                 phone:
                   type: string
-                  description: 手机号
+                  description: 手机号（选填，与email二选一）
                   example: "13800138000"
+                email:
+                  type: string
+                  description: 邮箱（选填，与phone二选一）
+                  example: "test@campus.edu"
             example:
               phone: "13800138000"
       responses:
@@ -378,16 +382,21 @@ paths:
                     example: 200
                   message:
                     type: string
-                    example: "验证码已发送（开发环境）"
+                    example: "验证码已发送（开发环境/手机号直接返回）"
                   data:
                     type: object
                     properties:
-                      phone:
+                      target:
                         type: string
+                        description: 目标（手机号或邮箱）
                         example: "13800138000"
+                      targetType:
+                        type: string
+                        description: 目标类型
+                        example: "手机号"
                       verifyCode:
                         type: string
-                        description: 验证码（仅开发环境返回）
+                        description: 验证码（开发环境或手机号时返回）
                         example: "123456"
                       expireSeconds:
                         type: integer
@@ -396,25 +405,295 @@ paths:
                   timestamp:
                     type: integer
                     example: 1771830582058
-              examples:
-                dev:
-                  summary: 开发环境响应
-                  value:
-                    code: 200
-                    message: "验证码已发送（开发环境）"
-                    data:
-                      phone: "13800138000"
-                      verifyCode: "123456"
-                      expireSeconds: 300
-                    timestamp: 1771830582058
-                prod:
-                  summary: 生产环境响应
-                  value:
-                    code: 200
-                    message: "验证码已发送，请注意查收"
-                    data:
-                      phone: "13800138000"
-                    timestamp: 1771830582058
+
+  # ==================== 忘记密码 ====================
+  /api/auth/forgot-password:
+    post:
+      tags:
+        - 认证服务
+      summary: 忘记密码
+      description: |
+        通过验证码重置密码。
+        
+        **流程**：
+        1. 先调用获取验证码接口获取验证码
+        2. 使用验证码重置密码
+      operationId: forgotPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - verifyCode
+                - newPassword
+              properties:
+                email:
+                  type: string
+                  description: 注册邮箱
+                  example: "student01@campus.edu"
+                verifyCode:
+                  type: string
+                  description: 验证码
+                  example: "123456"
+                newPassword:
+                  type: string
+                  description: 新密码
+                  example: "newpassword123"
+            example:
+              email: "student01@campus.edu"
+              verifyCode: "123456"
+              newPassword: "newpassword123"
+      responses:
+        '200':
+          description: 密码重置成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: 验证码错误或已过期
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  # ==================== 优惠券服务 ====================
+  /api/coupon/list:
+    get:
+      tags:
+        - 优惠券服务
+      summary: 获取优惠券列表
+      description: |
+        获取可领取的优惠券列表。
+      operationId: getCouponList
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Coupon'
+
+  /api/coupon/my:
+    get:
+      tags:
+        - 优惠券服务
+      summary: 获取我的优惠券
+      description: |
+        获取当前用户已领取的优惠券。
+      operationId: getMyCoupons
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          description: 状态（1-未使用，2-已使用，3-已过期）
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      type: object
+        '401':
+          description: 未认证
+
+  /api/coupon/receive/{couponId}:
+    post:
+      tags:
+        - 优惠券服务
+      summary: 领取优惠券
+      description: |
+        用户领取指定优惠券。
+      operationId: receiveCoupon
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: couponId
+          in: path
+          description: 优惠券ID
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: 领取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: 领取失败
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/coupon/available:
+    get:
+      tags:
+        - 优惠券服务
+      summary: 获取可用优惠券
+      description: |
+        获取当前用户可用于下单的优惠券。
+      operationId: getAvailableCoupons
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: merchantId
+          in: query
+          description: 商户ID
+          required: false
+          schema:
+            type: integer
+        - name: orderAmount
+          in: query
+          description: 订单金额
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ==================== 消息通知服务 ====================
+  /api/notification:
+    get:
+      tags:
+        - 消息通知服务
+      summary: 获取消息列表
+      description: |
+        获取当前用户的通知消息列表。
+      operationId: getNotifications
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: isRead
+          in: query
+          description: 已读状态（0-未读，1-已读）
+          required: false
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: 页码
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: size
+          in: query
+          description: 每页数量
+          required: false
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: 未认证
+
+  /api/notification/unread-count:
+    get:
+      tags:
+        - 消息通知服务
+      summary: 获取未读消息数量
+      description: |
+        获取当前用户未读消息的数量。
+      operationId: getUnreadCount
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                  data:
+                    type: integer
+                    description: 未读数量
+                    example: 5
+
+  /api/notification/{notificationId}/read:
+    put:
+      tags:
+        - 消息通知服务
+      summary: 标记消息为已读
+      description: |
+        将指定消息标记为已读状态。
+      operationId: markAsRead
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: notificationId
+          in: path
+          description: 消息ID
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: 操作成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+
+  /api/notification/read-all:
+    put:
+      tags:
+        - 消息通知服务
+      summary: 标记全部消息为已读
+      description: |
+        将所有未读消息标记为已读状态。
+      operationId: markAllAsRead
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 操作成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
 
   /api/auth/me:
     get:
@@ -2071,125 +2350,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/SuccessResponse'
 
-  # ==================== 通知服务 ====================
-  /api/notification/list:
-    get:
-      tags:
-        - 通知服务
-      summary: 获取通知列表
-      description: 获取当前用户的通知列表
-      operationId: getNotificationList
-      security:
-        - BearerAuth: []
-      parameters:
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
-            default: 20
-      responses:
-        '200':
-          description: 获取成功
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotificationListResponse'
-
-  /api/notification/unread-count:
-    get:
-      tags:
-        - 通知服务
-      summary: 获取未读数量
-      description: 获取当前用户的未读通知数量
-      operationId: getUnreadCount
-      security:
-        - BearerAuth: []
-      responses:
-        '200':
-          description: 获取成功
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  code:
-                    type: integer
-                  message:
-                    type: string
-                  data:
-                    type: integer
-                    example: 5
-
-  /api/notification/read/{id}:
-    post:
-      tags:
-        - 通知服务
-      summary: 标记已读
-      description: 标记指定通知为已读
-      operationId: markNotificationRead
-      security:
-        - BearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: 通知ID
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: 标记成功
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SuccessResponse'
-
-  /api/notification/read-all:
-    post:
-      tags:
-        - 通知服务
-      summary: 全部标记已读
-      description: 将当前用户所有通知标记为已读
-      operationId: markAllNotificationsRead
-      security:
-        - BearerAuth: []
-      responses:
-        '200':
-          description: 标记成功
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SuccessResponse'
-
-  /api/notification/delete/{id}:
-    delete:
-      tags:
-        - 通知服务
-      summary: 删除通知
-      description: 删除指定通知
-      operationId: deleteNotification
-      security:
-        - BearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: 通知ID
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: 删除成功
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SuccessResponse'
-
   # ==================== 文件服务 ====================
   /api/file/config:
     get:
@@ -3469,6 +3629,93 @@ components:
         timestamp:
           type: integer
           format: int64
+
+    # ==================== 优惠券相关 ====================
+    Coupon:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "满20减5"
+        description:
+          type: string
+          example: "满20元可用"
+        type:
+          type: integer
+          description: 优惠券类型，1-满减券 2-折扣券
+          example: 1
+        minAmount:
+          type: number
+          format: double
+          description: 最低消费金额
+          example: 20.00
+        discountAmount:
+          type: number
+          format: double
+          description: 优惠金额
+          example: 5.00
+        discountPercent:
+          type: integer
+          description: 折扣百分比（折扣券使用）
+          example: 80
+        startTime:
+          type: string
+          format: date-time
+          description: 开始时间
+        endTime:
+          type: string
+          format: date-time
+          description: 结束时间
+        totalCount:
+          type: integer
+          description: 总数量
+          example: 100
+        remainingCount:
+          type: integer
+          description: 剩余数量
+          example: 50
+        status:
+          type: integer
+          description: 状态，0-禁用 1-启用
+          example: 1
+        createTime:
+          type: string
+          format: date-time
+
+    UserCoupon:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        couponId:
+          type: integer
+          format: int64
+        coupon:
+          $ref: '#/components/schemas/Coupon'
+        status:
+          type: integer
+          description: 状态，1-未使用 2-已使用 3-已过期
+          example: 1
+        useTime:
+          type: string
+          format: date-time
+        orderId:
+          type: integer
+          format: int64
+        receiveTime:
+          type: string
+          format: date-time
+        expireTime:
+          type: string
+          format: date-time
 
     # ==================== 商家相关 ====================
     Merchant:

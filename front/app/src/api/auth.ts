@@ -13,7 +13,7 @@ interface LoginResponse {
 }
 
 interface RegisterParams {
-  phone: string;
+  email: string;
   password: string;
   verifyCode: string;
   nickname?: string;
@@ -37,8 +37,8 @@ export async function register(params: RegisterParams): Promise<LoginResponse> {
  * 发送验证码
  * 修改为与后端对齐：POST /api/auth/verify-code
  */
-export async function sendVerifyCode(phone: string): Promise<void> {
-  return post<void>('/api/auth/verify-code', { phone });
+export async function sendVerifyCode(email: string): Promise<void> {
+  return post<void>('/api/auth/verify-code', { email });
 }
 
 /**
@@ -55,4 +55,17 @@ export async function logout(): Promise<void> {
  */
 export async function getCurrentUser(): Promise<User> {
   return get<User>('/api/auth/me');
+}
+
+/**
+ * 忘记密码
+ */
+interface ForgotPasswordParams {
+  email: string;
+  verifyCode: string;
+  newPassword: string;
+}
+
+export async function forgotPassword(params: ForgotPasswordParams): Promise<void> {
+  return post<void>('/api/auth/forgot-password', params);
 }

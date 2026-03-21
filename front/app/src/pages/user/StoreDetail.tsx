@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Plus, Minus, ShoppingCart, Flame, Heart, Share2, ChevronLeft, Store, Clock, MapPin, Star } from 'lucide-react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Plus, Minus, ShoppingCart, Flame, Heart, Share2, ChevronLeft, Store, Clock, MapPin, Star, ImageOff, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { DishCard } from '@/components/common/DishCard';
+import { ReviewList } from '@/components/common/ReviewList';
 import { useMerchantDetail, useProducts, useProductCategories } from '@/hooks';
 import { useCartStore } from '@/stores/cartStore';
 import { PageSkeleton } from '@/components/ui/PageSkeleton';
@@ -13,6 +14,8 @@ import type { Dish } from '@/types';
 export function StoreDetail() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isLiked, setIsLiked] = useState(false);
+  const [bannerError, setBannerError] = useState(false);
+  const navigate = useNavigate();
   
   const { id } = useParams<{ id: string }>();
   const storeId = Number(id) || 0;
@@ -92,15 +95,23 @@ export function StoreDetail() {
 
       <div className="relative">
         <div className="h-56 w-full overflow-hidden bg-gradient-to-br from-orange-100 to-orange-50">
-          {store.banner ? (
+          {store.banner && !bannerError ? (
             <img
               src={store.banner}
               alt={store.name}
               className="w-full h-full object-cover"
+              onError={() => setBannerError(true)}
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <Store className="w-24 h-24 text-orange-200" />
+            <div className="w-full h-full flex flex-col items-center justify-center">
+              {bannerError ? (
+                <>
+                  <ImageOff className="w-16 h-16 text-orange-300 mb-2" />
+                  <span className="text-orange-300 text-sm">图片加载失败</span>
+                </>
+              ) : (
+                <Store className="w-24 h-24 text-orange-200" />
+              )}
             </div>
           )}
         </div>
@@ -165,6 +176,15 @@ export function StoreDetail() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 mt-8">
+        {/* 评价区域 */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6">
+          <div className="flex items-center gap-2 mb-4">
+            <MessageSquare className="w-5 h-5 text-orange-500" />
+            <h3 className="text-lg font-semibold">用户评价</h3>
+          </div>
+          <ReviewList merchantId={storeId} />
+        </div>
+
         <div className="sticky top-14 z-30 bg-gray-50/95 backdrop-blur-sm py-4 -mx-4 px-4">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
             {allCategories.map((cat) => (
@@ -224,7 +244,10 @@ export function StoreDetail() {
                 <div className="text-sm text-gray-500">另需配送费 ¥0</div>
               </div>
             </div>
-            <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-2xl px-8 h-12 text-lg font-semibold shadow-lg shadow-orange-500/30 transition-all duration-200 hover:shadow-xl hover:shadow-orange-500/40">
+            <Button 
+              onClick={() => navigate(`/checkout?merchantId=${storeId}`)}
+              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-2xl px-8 h-12 text-lg font-semibold shadow-lg shadow-orange-500/30 transition-all duration-200 hover:shadow-xl hover:shadow-orange-500/40"
+            >
               去结算
             </Button>
           </div>

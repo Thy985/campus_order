@@ -95,30 +95,34 @@ export function OrderCard({ order, index = 0, onPay, onConfirmPickup, onReorder 
       {/* Items Preview */}
       <div className="px-4">
         <div className="flex gap-3 overflow-x-auto pb-3 custom-scrollbar">
-          {order.items.map((item, i) => (
-            <div key={i} className="flex-shrink-0 flex items-center gap-2 bg-gray-50 rounded-xl p-2">
-              <img
-                src={item.image || item.dishImage || '/placeholder-dish.png'}
-                alt={item.name || item.dishName || '商品'}
-                className="w-12 h-12 rounded-lg object-cover"
-              />
-              <div className="min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate max-w-[100px]">
-                  {item.name || item.dishName}
-                </p>
-                <p className="text-xs text-gray-500">x{item.quantity}</p>
+          {order.items && order.items.length > 0 ? (
+            order.items.map((item, i) => (
+              <div key={i} className="flex-shrink-0 flex items-center gap-2 bg-gray-50 rounded-xl p-2">
+                <img
+                  src={item.image || '/placeholder-dish.png'}
+                  alt={item.name || '商品'}
+                  className="w-12 h-12 rounded-lg object-cover"
+                />
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-gray-900 truncate max-w-[100px]">
+                    {item.name || '未知商品'}
+                  </p>
+                  <p className="text-xs text-gray-500">x{item.quantity || 0}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <div className="text-gray-500 text-sm">暂无商品信息</div>
+          )}
         </div>
       </div>
 
       {/* Footer */}
       <div className="p-4 pt-2 flex items-center justify-between border-t border-gray-50">
         <div className="flex items-baseline gap-2">
-          <span className="text-sm text-gray-500">共{order.items.reduce((sum, i) => sum + i.quantity, 0)}件</span>
+          <span className="text-sm text-gray-500">共{order.items?.reduce((sum, i) => sum + i.quantity, 0) || 0}件</span>
           <span className="text-sm text-gray-500">实付</span>
-          <span className="text-lg font-bold text-orange-500">¥{order.actualAmount}</span>
+          <span className="text-lg font-bold text-orange-500">¥{(order.actualAmount || 0).toFixed(2)}</span>
         </div>
         <div className="flex items-center gap-2">
           {getActionButton()}
@@ -147,7 +151,7 @@ export function OrderCard({ order, index = 0, onPay, onConfirmPickup, onReorder 
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-500">商品总额</span>
-              <span className="text-gray-900">¥{order.totalAmount}</span>
+              <span className="text-gray-900">¥{(order.totalAmount || 0).toFixed(2)}</span>
             </div>
             {order.remark && (
               <div className="flex justify-between text-sm">

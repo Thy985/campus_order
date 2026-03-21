@@ -38,7 +38,7 @@ export function Checkout() {
   const merchantName = checkoutItems[0]?.merchantName || '商家';
   
   const totalPrice = useMemo(() => {
-    return checkoutItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    return checkoutItems.reduce((sum, item) => sum + (item.price || 0) * (item.quantity || 0), 0);
   }, [checkoutItems]);
   
   // 如果购物车为空或没有对应商家的商品，显示空状态
@@ -70,34 +70,53 @@ export function Checkout() {
       toast.error('请输入配送地址');
       return;
     }
+    
+    // 验证地址长度（最多100个字符）
+    if (deliveryAddress.trim().length > 100) {
+      toast.error('配送地址不能超过100个字符');
+      return;
+    }
+    
     if (!contactPhone.trim()) {
       toast.error('请输入联系电话');
       return;
     }
+    
+    // 增强手机号验证
     if (!/^1[3-9]\d{9}$/.test(contactPhone)) {
-      toast.error('请输入正确的手机号');
+      toast.error('请输入正确的11位手机号');
       return;
     }
     
     setIsSubmitting(true);
     
     try {
-      const orderData: any = {
+      // 转换数据格式以匹配后端API
+      const orderData = {
         merchantId: merchantId!,
-        items: checkoutItems.map((item) => ({
+        orderItems: checkoutItems.map((item) => ({
           productId: item.productId,
-          quantity: item.quantity,
+          productName: item.name || '未知商品',
+          productPrice: item.price || 0,
+          quantity: item.quantity || 0,
+          productImage: item.image,
         })),
         remark: remark || undefined,
+        deliveryAddress: deliveryAddress.trim(),
+        contactPhone: contactPhone.trim(),
+        contactName: contactName.trim() || undefined,
       };
-      
+
       const order = await createOrder(orderData as any);
-      
+      console.log('createOrder 返回:', order);
+
       if (order) {
-        // 只清空已结算的商品
+        console.log('跳转路径:', `/order/${order.id}`);
         checkoutItems.forEach(item => removeItem(item.productId));
         toast.success('订单创建成功');
         navigate(`/order/${order.id}`);
+      } else {
+        console.error('order为空，创建订单可能失败');
       }
     } catch (error) {
       toast.error('创建订单失败');
@@ -152,9 +171,17 @@ export function Checkout() {
                 type="text"
                 placeholder="请输入配送地址（如：学生公寓3号楼201）"
                 value={deliveryAddress}
-                onChange={(e) => setDeliveryAddress(e.target.value)}
+                onChange={(e) => {
+                  if (e.target.value.length <= 100) {
+                    setDeliveryAddress(e.target.value);
+                  }
+                }}
                 className="w-full"
+                maxLength={100}
               />
+              <p className="text-xs text-gray-400 mt-1 text-right">
+                {deliveryAddress.length}/100
+              </p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -201,12 +228,12 @@ export function Checkout() {
                     )}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">{item.name}</p>
-                    <p className="text-sm text-gray-500">x{item.quantity}</p>
+                    <p className="font-medium text-gray-900">{item.name || '未知商品'}</p>
+                    <p className="text-sm text-gray-500">x{item.quantity || 0}</p>
                   </div>
                 </div>
                 <span className="text-gray-900 font-medium">
-                  ¥{(item.price * item.quantity).toFixed(2)}
+                  ¥{((item.price || 0) * (item.quantity || 0)).toFixed(2)}
                 </span>
               </div>
             ))}
@@ -232,11 +259,18 @@ export function Checkout() {
           <h3 className="font-semibold mb-4">订单备注</h3>
           <textarea
             value={remark}
-            onChange={(e) => setRemark(e.target.value)}
+            onChange={(e) => {
+              if (e.target.value.length <= 200) {
+                setRemark(e.target.value);
+              }
+            }}
             placeholder="请输入备注信息（选填）"
             className="w-full h-24 p-3 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-orange-500"
             maxLength={200}
           />
+          <p className="text-xs text-gray-400 mt-2 text-right">
+            {remark.length}/200
+          </p>
         </Card>
         
         {/* Payment Method */}

@@ -132,12 +132,12 @@ export const useCartStore = create<CartState>()(
       },
 
       getTotalCount: () => {
-        return get().cart.items.reduce((sum, item) => sum + item.quantity, 0);
+        return get().cart.items.reduce((sum, item) => sum + (item.quantity || 0), 0);
       },
 
       getTotalPrice: () => {
         return get().cart.items.reduce(
-          (sum, item) => sum + item.price * item.quantity,
+          (sum, item) => sum + (item.price || 0) * (item.quantity || 0),
           0
         );
       },
@@ -145,7 +145,7 @@ export const useCartStore = create<CartState>()(
       getMerchantTotal: (merchantId) => {
         return get()
           .cart.items.filter((i) => i.merchantId === merchantId)
-          .reduce((sum, item) => sum + item.price * item.quantity, 0);
+          .reduce((sum, item) => sum + (item.price || 0) * (item.quantity || 0), 0);
       },
     }),
     {

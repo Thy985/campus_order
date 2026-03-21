@@ -5,10 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { toast } from '@/lib/toast';
 import { useCartStore } from '@/stores/cartStore';
+import { useUser } from '@/hooks';
 
 export function Cart() {
   const navigate = useNavigate();
   const { cart, removeItem, updateQuantity, clearCart } = useCartStore();
+  const { isAuthenticated } = useUser();
   const items = cart.items;
   const [loading, setLoading] = useState(false);
 
@@ -45,6 +47,13 @@ export function Cart() {
   const handleCheckout = (merchantId: number) => {
     const merchantGroup = groupedItems[merchantId];
     if (!merchantGroup || merchantGroup.items.length === 0) return;
+
+    // 检查用户是否登录
+    if (!isAuthenticated) {
+      toast.error('请先登录');
+      navigate('/login', { state: { from: `/cart` } });
+      return;
+    }
 
     // 跳转到订单确认页面，传递商家ID
     navigate(`/checkout?merchantId=${merchantId}`);
@@ -143,7 +152,7 @@ export function Cart() {
                   <div className="flex-1 min-w-0">
                     <h3 className="font-medium text-gray-900 truncate">{item.name}</h3>
                     <p className="text-orange-500 font-semibold mt-1">
-                      ¥{item.price.toFixed(2)}
+                      ¥{(item.price || 0).toFixed(2)}
                     </p>
 
                     {/* Quantity Controls */}
@@ -184,7 +193,7 @@ export function Cart() {
               <div>
                 <span className="text-sm text-gray-500">共 {group.items.length} 件商品</span>
                 <p className="text-lg font-bold text-gray-900">
-                  ¥{group.items.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
+                  ¥{group.items.reduce((sum, item) => sum + (item.price || 0) * (item.quantity || 0), 0).toFixed(2)}
                 </p>
               </div>
               <Button

@@ -1,10 +1,12 @@
 import { MapPin, Heart, MessageSquare, Settings, HelpCircle, Gift, Bell, Crown, LogOut, User as UserIcon, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useUser } from '@/hooks';
 import { PageSkeleton } from '@/components/ui/PageSkeleton';
 
 export function Profile() {
+  const navigate = useNavigate();
   const { user, loading, isAuthenticated, logout } = useUser();
 
   // 加载中状态
@@ -26,9 +28,9 @@ export function Profile() {
           </div>
           <h2 className="text-xl font-bold text-gray-900 mb-2">未登录</h2>
           <p className="text-gray-500 mb-6">请先登录后查看个人中心</p>
-          <Button 
+          <Button
             className="w-full rounded-xl bg-gradient-to-r from-orange-500 to-red-500"
-            onClick={() => window.location.href = '#/login'}
+            onClick={() => navigate('/login')}
           >
             立即登录
           </Button>

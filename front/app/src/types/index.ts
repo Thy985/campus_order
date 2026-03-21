@@ -77,10 +77,16 @@ export interface Dish {
 }
 
 // ==================== 购物车类型 ====================
+// 与 cartStore.tsx 中的 CartItem 保持一致
 export interface CartItem {
-  dish: Dish;
+  productId: number;
+  merchantId: number;
+  merchantName: string;
+  name: string;
+  price: number;
   quantity: number;
-  selected: boolean;
+  image?: string;
+  dish?: Dish;
 }
 
 export interface Cart {
@@ -91,15 +97,9 @@ export interface Cart {
 }
 
 // ==================== 订单相关类型 ====================
-export interface OrderItem {
-  productId: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image?: string;
-  dishImage?: string;
-  dishName?: string;
-}
+// 从api.ts重新导出订单相关类型，避免重复定义
+export type { Order, OrderItem, OrderDetailResponse } from './api';
+export { OrderStatus, PayStatus } from './api';
 
 export interface OrderAddress {
   contactName: string;
@@ -107,37 +107,21 @@ export interface OrderAddress {
   detail: string;
 }
 
-// 注意：Order接口从api.ts导入，避免重复定义
-export interface Order {
-  id: number;              // 修改为number与后端一致
-  orderNo: string;
-  merchantId: number;
-  merchantName: string;
-  merchantLogo?: string;
-  userId: number;          // 修改为number
-  status: number;          // 修改为number与后端一致
-  payStatus?: number;      // 修改为number
-  totalAmount: number;
-  actualAmount: number;
-  remark?: string;
-  items: OrderItem[];
-  address?: OrderAddress;
-  createTime: string;
-  updateTime?: string;
-  payTime?: string;
-  acceptTime?: string;
-  finishTime?: string;
-}
-
 // 创建订单参数
 export interface CreateOrderParams {
   merchantId: number;
-  items: {
+  orderItems: {
     productId: number;
+    productName: string;
+    productPrice: number;
     quantity: number;
+    productImage?: string;
   }[];
   remark?: string;
   addressId?: number;
+  deliveryAddress?: string;
+  contactPhone?: string;
+  contactName?: string;
 }
 
 // ==================== 分页响应类型 ====================
@@ -152,3 +136,28 @@ export interface PaginatedResponse<T> {
   pageSize: number;
   totalPages?: number;
 }
+
+// ==================== 消息通知类型 ====================
+export interface Notification {
+  id: number;
+  userId: number;
+  type: number;
+  title: string;
+  content: string;
+  extraData?: string;
+  isRead: number;
+  isDeleted: number;
+  createTime: string;
+}
+
+export enum NotificationType {
+  SYSTEM = 0,
+  ORDER = 1,
+  ACTIVITY = 2,
+}
+
+export const NotificationTypeText: Record<NotificationType, string> = {
+  [NotificationType.SYSTEM]: '系统通知',
+  [NotificationType.ORDER]: '订单通知',
+  [NotificationType.ACTIVITY]: '活动通知',
+};

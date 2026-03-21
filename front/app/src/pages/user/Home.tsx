@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Store, TrendingUp, Zap, ChevronRight, Star, Gift, Search } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { StoreCard } from '@/components/common/StoreCard';
 import { CategoryNav } from '@/components/common/CategoryNav';
-import { useMerchants } from '@/hooks';
+import { useMerchants, useUser } from '@/hooks';
 import { StoreCardSkeleton } from '@/components/ui/skeleton';
 import { RippleButton } from '@/components/ui/ripple-button';
 import { toast } from '@/lib/toast';
@@ -35,16 +36,35 @@ const itemVariants = {
 };
 
 export function Home() {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useUser();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchKeyword, setSearchKeyword] = useState('');
 
   // 使用真实数据Hook
-  const { merchants, loading, error, total } = useMerchants({
+  const { merchants, loading, error, total, refresh } = useMerchants({
     page: 1,
     pageSize: 20,
     keyword: searchKeyword || undefined,
-    categoryId: selectedCategory !== 'all' ? Number(selectedCategory) : undefined,
+    categoryId: selectedCategory && selectedCategory !== 'all' ? Number(selectedCategory) : undefined,
   });
+
+  // 处理新用户专享按钮点击
+  const handleNewUserClick = () => {
+    if (!isAuthenticated) {
+      toast.error('请先登录领取优惠');
+      navigate('/login', { state: { from: '/' } });
+      return;
+    }
+    // 已登录用户跳转到优惠券页面
+    navigate('/coupons');
+  };
+
+  // 处理本周热销按钮点击
+  const handleHotClick = () => {
+    // 滚动到推荐商家区域或跳转到商家列表
+    navigate('/stores');
+  };
 
   // 错误处理 - 使用useEffect避免在渲染阶段调用toast
   useEffect(() => {
@@ -53,6 +73,8 @@ export function Home() {
       toast.error('获取商家列表失败：' + error.message);
     }
   }, [error]);
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50/50 to-white pb-20 lg:pb-0">
@@ -94,13 +116,13 @@ export function Home() {
                   onChange={(e) => setSearchKeyword(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
-                      // 触发搜索
+                      refresh();
                     }
                   }}
                 />
                 <RippleButton
                   className="absolute right-2 top-1/2 -translate-y-1/2 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg shadow-orange-500/30"
-                  onClick={() => {/* 触发搜索 */}}
+                  onClick={() => refresh()}
                 >
                   搜索
                 </RippleButton>
@@ -118,7 +140,10 @@ export function Home() {
               {['奶茶', '汉堡', '盖浇饭', '麻辣烫', '寿司'].map((tag) => (
                 <button
                   key={tag}
-                  onClick={() => setSearchKeyword(tag)}
+                  onClick={() => {
+                    setSearchKeyword(tag);
+                    setTimeout(() => refresh(), 0);
+                  }}
                   className="px-3 py-1 text-sm text-gray-600 bg-white rounded-full border border-gray-200 hover:border-orange-300 hover:text-orange-500 transition-colors"
                 >
                   {tag}
@@ -232,7 +257,10 @@ export function Home() {
                 </Badge>
                 <h3 className="text-2xl font-bold mb-2">新用户专享</h3>
                 <p className="text-white/80 mb-4">首单立减15元，快来体验吧！</p>
-                <RippleButton className="bg-white text-orange-500 hover:bg-white/90 rounded-xl shadow-lg">
+                <RippleButton
+                  className="bg-white text-orange-500 hover:bg-white/90 rounded-xl shadow-lg"
+                  onClick={handleNewUserClick}
+                >
                   立即领取
                 </RippleButton>
               </div>
@@ -253,7 +281,10 @@ export function Home() {
                 </Badge>
                 <h3 className="text-2xl font-bold mb-2">本周热销</h3>
                 <p className="text-white/80 mb-4">发现校园周边最受欢迎的美食</p>
-                <RippleButton className="bg-white text-blue-500 hover:bg-white/90 rounded-xl shadow-lg">
+                <RippleButton
+                  className="bg-white text-blue-500 hover:bg-white/90 rounded-xl shadow-lg"
+                  onClick={handleHotClick}
+                >
                   去探索
                 </RippleButton>
               </div>

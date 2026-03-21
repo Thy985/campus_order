@@ -146,6 +146,7 @@ export interface MerchantDetailResponse {
   deliveryTime: number;
   distance: number;
   minPrice: number;
+  minOrderAmount?: number;
   status: number;
   categoryId?: number;
   description?: string;

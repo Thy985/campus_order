@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShoppingBag, ChevronLeft, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -17,13 +18,18 @@ const orderTabs: { value: number | 'all'; label: string }[] = [
 ];
 
 export function Orders() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<number | 'all'>('all');
-  
+
   const { orders, loading, error, total, refresh } = useOrders({
     page: 1,
     pageSize: 20,
     status: activeTab,
   });
+
+  const handlePay = (orderId: number) => {
+    navigate(`/payment/${orderId}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -90,7 +96,7 @@ export function Orders() {
         ) : (
           <div className="space-y-4">
             {orders.map((order) => (
-              <OrderCard key={order.id} order={order} />
+              <OrderCard key={order.id} order={order} onPay={handlePay} />
             ))}
           </div>
         )}
