@@ -78,20 +78,26 @@ export function OrderList() {
               </div>
               
               <div className="space-y-2 mb-3">
-                {order.items.slice(0, 2).map((item, idx) => (
-                  <div key={idx} className="flex justify-between text-sm">
-                    <span className="text-gray-600">
-                      {item.name} x{item.quantity}
-                    </span>
-                    <span className="text-gray-900">
-                      ¥{(item.price * item.quantity).toFixed(2)}
-                    </span>
-                  </div>
-                ))}
-                {order.items.length > 2 && (
-                  <p className="text-sm text-gray-400">
-                    等 {order.items.length} 件商品
-                  </p>
+                {order.items && order.items.length > 0 ? (
+                  <>
+                    {order.items.slice(0, 2).map((item, idx) => (
+                      <div key={idx} className="flex justify-between text-sm">
+                        <span className="text-gray-600">
+                          {item.name || '未知商品'} x{item.quantity || 0}
+                        </span>
+                        <span className="text-gray-900">
+                          ¥{((item.price || 0) * (item.quantity || 0)).toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                    {order.items.length > 2 && (
+                      <p className="text-sm text-gray-400">
+                        等 {order.items.length} 件商品
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-sm text-gray-400">暂无商品信息</p>
                 )}
               </div>
 
@@ -100,7 +106,7 @@ export function OrderList() {
                   {new Date(order.createTime).toLocaleDateString()}
                 </span>
                 <span className="font-semibold">
-                  实付 ¥{order.totalAmount.toFixed(2)}
+                  实付 ¥{(order.totalAmount || 0).toFixed(2)}
                 </span>
               </div>
             </Card>
