@@ -1,0 +1,132 @@
+# ============================================
+# 测试环境配置 (application-test.yml)
+# ============================================
+# 配置原则：
+# 1. 使用MySQL数据库（campus_order）
+# 2. 使用嵌入式Redis或Redis mock
+# 3. 关闭外部服务调用（支付、短信等）
+# 4. 最小化日志输出
+# 5. 禁用定时任务
+# ============================================
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  application:
+    name: campus-order-test
+
+  # ============================================
+  # MySQL数据库配置
+  # ============================================
+  datasource:
+    url: jdbc:mysql://localhost:3306/campus_order?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      validation-query: SELECT 1
+
+  # ============================================
+  # JPA/Hibernate配置
+  # ============================================
+  jpa:
+    hibernate:
+      ddl-auto: none  # 使用现有表结构，不自动创建
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  # ============================================
+  # SQL初始化配置
+  # ============================================
+  sql:
+    init:
+      mode: never  # 测试环境不执行初始化脚本
+
+  # ============================================
+  # Redis配置（使用embedded-redis或mock）
+  # ============================================
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
+      timeout: 5000ms
+
+  # ============================================
+  # 缓存配置（测试环境使用简单缓存）
+  # ============================================
+  cache:
+    type: simple
+
+# ============================================
+# 测试环境日志配置
+# ============================================
+logging:
+  level:
+    root: WARN
+    com.xingchen.backend: DEBUG
+    org.springframework.test: INFO
+    org.hibernate.SQL: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# ============================================
+# 测试环境支付配置（禁用真实支付）
+# ============================================
+alipay:
+  sandbox: true
+  app-id: test-app-id
+  private-key: test-private-key
+  public-key: test-public-key
+  notify-url: http://localhost:9090/api/payment/alipay/notify
+  return-url: http://localhost:9090/api/payment/alipay/return
+
+# ============================================
+# 测试环境短信配置（使用mock）
+# ============================================
+sms:
+  provider: mock
+  enabled: false
+
+# ============================================
+# 测试环境文件上传配置
+# ============================================
+file:
+  upload-dir: ./uploads/test
+  access-url: http://localhost:9090/files
+  max-size: 10485760
+  allowed-extensions: jpg,jpeg,png,gif,bmp,webp
+
+# ============================================
+# 测试环境限流配置（禁用）
+# ============================================
+rate-limit:
+  enabled: false
+
+# ============================================
+# 测试环境Sa-Token配置
+# ============================================
+sa-token:
+  # 测试环境Token有效期较长
+  timeout: 86400
+  is-log: false
+
+# ============================================
+# 测试环境服务器配置
+# ============================================
+server:
+  port: 0  # 随机端口，避免端口冲突

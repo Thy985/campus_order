@@ -1,0 +1,35 @@
+# Test Environment Configuration
+env: test
+api:
+  base_url: http://localhost:9090
+  timeout: 30
+  retry:
+    max_attempts: 3
+    backoff_factor: 1
+
+# Database configuration (optional, for test data cleanup)
+database:
+  host: localhost
+  port: 3306
+  name: campus_order_test
+  user: root
+  password: "123456"
+
+# Test data configuration
+test_data:
+  user:
+    prefix: test_user_
+    password: Test@123456
+  merchant:
+    prefix: test_merchant_
+  product:
+    prefix: test_product_
+
+# Logging configuration
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Rate limiting configuration
+rate_limit:
+  enabled: false

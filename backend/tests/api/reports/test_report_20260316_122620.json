@@ -1,0 +1,1322 @@
+{
+  "report_info": {
+    "title": "API Test Report",
+    "generated_at": "2026-03-16T12:26:20.668164",
+    "generator": "CampusOrder API Test Framework",
+    "version": "1.0.0"
+  },
+  "summary": {
+    "total_suites": 3,
+    "total_tests": 8,
+    "passed_tests": 8,
+    "failed_tests": 0,
+    "error_tests": 0,
+    "skipped_tests": 0,
+    "success_rate": 100.0,
+    "duration": 1.057639,
+    "start_time": "2026-03-16T12:26:19.609980",
+    "end_time": "2026-03-16T12:26:20.667619",
+    "performance_stats": {
+      "total_requests": 8,
+      "avg_response_time": 0.131,
+      "min_response_time": 0.003,
+      "max_response_time": 0.805,
+      "p50_response_time": 0.018,
+      "p90_response_time": 0.805,
+      "p95_response_time": 0.805,
+      "p99_response_time": 0.805
+    },
+    "metadata": {
+      "environment": "dev",
+      "base_url": "http://localhost:9090",
+      "framework_version": "1.0.0"
+    }
+  },
+  "suites": {
+    "Health Check Tests": {
+      "suite_name": "Health Check Tests",
+      "description": "Basic health check and connectivity tests",
+      "total_tests": 2,
+      "passed_tests": 2,
+      "failed_tests": 0,
+      "error_tests": 0,
+      "skipped_tests": 0,
+      "success_rate": 100.0,
+      "duration": 0.810211,
+      "start_time": "2026-03-16T12:26:19.611174",
+      "end_time": "2026-03-16T12:26:20.421385",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 2,
+        "avg_response_time": 0.403905987739563,
+        "min_response_time": 0.0028531551361083984,
+        "max_response_time": 0.8049588203430176,
+        "p50_response_time": 0.8049588203430176,
+        "p90_response_time": 0.8049588203430176,
+        "p95_response_time": 0.8049588203430176,
+        "p99_response_time": 0.8049588203430176
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0
+        },
+        "response_time": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "Health Check Tests_health_check_1773635179612",
+          "test_name": "health_check",
+          "test_suite": "Health Check Tests",
+          "description": "Test system health endpoint",
+          "status": "passed",
+          "method": "GET",
+          "endpoint": "/actuator/health",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 04:26:20 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "status": "UP"
+            },
+            "response_time": 0.8049588203430176,
+            "url": "http://localhost:9090/actuator/health",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.417724"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.805s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.805s",
+              "timestamp": "2026-03-16T12:26:20.417742"
+            }
+          ],
+          "performance": {
+            "response_time": 0.8049588203430176,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T12:26:19.612163",
+          "end_time": "2026-03-16T12:26:20.417750",
+          "duration": 0.805587,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "health",
+            "monitoring"
+          ],
+          "priority": "critical",
+          "is_success": true,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Health Check Tests_api_root_1773635180417",
+          "test_name": "api_root",
+          "test_suite": "Health Check Tests",
+          "description": "Test API root endpoint",
+          "status": "passed",
+          "method": "GET",
+          "endpoint": "/",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Content-Type": "text/html;charset=UTF-8",
+              "Content-Length": "1073",
+              "Date": "Mon, 16 Mar 2026 04:26:20 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": "<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>校园点餐系统</title>\n    <style>\n        body {\n            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            min-height: 100vh;\n            margin: 0;\n            background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);\n            color: white;\n        }\n        .container {\n            text-align: center;\n            padding: 40px;\n        }\n        h1 { font-size: 2rem; margin-bottom: 1rem; }\n        p { opacity: 0.9; }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>🚀 校园点餐系统</h1>\n        <p>请先构建前端项目并将 dist 目录复制到 static 目录</p>\n        <p>运行: cd front/app && npm run build</p>\n        <p>复制: cp -r dist/* ../../../backend/src/main/resources/static/</p>\n    </div>\n</body>\n</html>\n",
+            "response_time": 0.0028531551361083984,
+            "url": "http://localhost:9090/",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.421271"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.003s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.003s",
+              "timestamp": "2026-03-16T12:26:20.421285"
+            }
+          ],
+          "performance": {
+            "response_time": 0.0028531551361083984,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T12:26:20.417860",
+          "end_time": "2026-03-16T12:26:20.421292",
+          "duration": 0.003432,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "health",
+            "root"
+          ],
+          "priority": "low",
+          "is_success": true,
+          "failed_validations_count": 0
+        }
+      ]
+    },
+    "Authentication API Tests": {
+      "suite_name": "Authentication API Tests",
+      "description": "Tests for authentication endpoints",
+      "total_tests": 3,
+      "passed_tests": 3,
+      "failed_tests": 0,
+      "error_tests": 0,
+      "skipped_tests": 0,
+      "success_rate": 100.0,
+      "duration": 0.209185,
+      "start_time": "2026-03-16T12:26:20.422078",
+      "end_time": "2026-03-16T12:26:20.631263",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 3,
+        "avg_response_time": 0.06878948211669922,
+        "min_response_time": 0.018123865127563477,
+        "max_response_time": 0.1623833179473877,
+        "p50_response_time": 0.025861263275146484,
+        "p90_response_time": 0.1623833179473877,
+        "p95_response_time": 0.1623833179473877,
+        "p99_response_time": 0.1623833179473877
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        },
+        "response_time": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        },
+        "data_integrity": {
+          "total": 6,
+          "passed": 6,
+          "failed": 0
+        },
+        "business_logic": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "Authentication API Tests_login_invalid_password_1773635180422",
+          "test_name": "login_invalid_password",
+          "test_suite": "Authentication API Tests",
+          "description": "Test login with invalid password returns error",
+          "status": "passed",
+          "method": "POST",
+          "endpoint": "/api/auth/login",
+          "request_headers": {},
+          "request_body": {
+            "phone": "13800000011",
+            "password": "wrongpassword"
+          },
+          "response": {
+            "status_code": 400,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 04:26:20 GMT",
+              "Connection": "close"
+            },
+            "body": {
+              "code": 20002,
+              "message": "密码错误",
+              "timestamp": 1773635180583,
+              "success": false
+            },
+            "response_time": 0.1623833179473877,
+            "url": "http://localhost:9090/api/auth/login",
+            "method": "POST"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 400",
+              "expected": 400,
+              "actual": 400,
+              "timestamp": "2026-03-16T12:26:20.585764"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.162s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.162s",
+              "timestamp": "2026-03-16T12:26:20.585777"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.585790"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: message",
+              "passed": true,
+              "message": "Required field 'message' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.585799"
+            },
+            {
+              "validation_type": "business_logic",
+              "name": "Business Logic: code",
+              "passed": true,
+              "message": "Business logic check 'code' passed",
+              "expected": "custom check",
+              "actual": 20002,
+              "timestamp": "2026-03-16T12:26:20.585809"
+            }
+          ],
+          "performance": {
+            "response_time": 0.1623833179473877,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T12:26:20.422744",
+          "end_time": "2026-03-16T12:26:20.585815",
+          "duration": 0.163071,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "auth",
+            "login",
+            "negative"
+          ],
+          "priority": "high",
+          "is_success": true,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Authentication API Tests_login_nonexistent_user_1773635180585",
+          "test_name": "login_nonexistent_user",
+          "test_suite": "Authentication API Tests",
+          "description": "Test login with non-existent user returns error",
+          "status": "passed",
+          "method": "POST",
+          "endpoint": "/api/auth/login",
+          "request_headers": {},
+          "request_body": {
+            "phone": "13999999999",
+            "password": "123456"
+          },
+          "response": {
+            "status_code": 400,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 04:26:20 GMT",
+              "Connection": "close"
+            },
+            "body": {
+              "code": 20001,
+              "message": "用户不存在",
+              "timestamp": 1773635180602,
+              "success": false
+            },
+            "response_time": 0.018123865127563477,
+            "url": "http://localhost:9090/api/auth/login",
+            "method": "POST"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 400",
+              "expected": 400,
+              "actual": 400,
+              "timestamp": "2026-03-16T12:26:20.604600"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.018s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.018s",
+              "timestamp": "2026-03-16T12:26:20.604613"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.604622"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: message",
+              "passed": true,
+              "message": "Required field 'message' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.604626"
+            }
+          ],
+          "performance": {
+            "response_time": 0.018123865127563477,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T12:26:20.585930",
+          "end_time": "2026-03-16T12:26:20.604631",
+          "duration": 0.018701,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "auth",
+            "login",
+            "negative"
+          ],
+          "priority": "high",
+          "is_success": true,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Authentication API Tests_check_login_status_not_logged_in_1773635180604",
+          "test_name": "check_login_status_not_logged_in",
+          "test_suite": "Authentication API Tests",
+          "description": "Test check login status when not logged in",
+          "status": "passed",
+          "method": "GET",
+          "endpoint": "/api/auth/check",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 04:26:20 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "code": 200,
+              "message": "success",
+              "data": {
+                "isLogin": false
+              },
+              "timestamp": 1773635180627,
+              "success": true
+            },
+            "response_time": 0.025861263275146484,
+            "url": "http://localhost:9090/api/auth/check",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.631144"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.026s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.026s",
+              "timestamp": "2026-03-16T12:26:20.631157"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.631165"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: data",
+              "passed": true,
+              "message": "Required field 'data' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.631167"
+            }
+          ],
+          "performance": {
+            "response_time": 0.025861263275146484,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T12:26:20.604742",
+          "end_time": "2026-03-16T12:26:20.631173",
+          "duration": 0.026431,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "auth",
+            "check",
+            "status"
+          ],
+          "priority": "medium",
+          "is_success": true,
+          "failed_validations_count": 0
+        }
+      ]
+    },
+    "Public API Tests": {
+      "suite_name": "Public API Tests",
+      "description": "Tests for public endpoints that don't require authentication",
+      "total_tests": 3,
+      "passed_tests": 3,
+      "failed_tests": 0,
+      "error_tests": 0,
+      "skipped_tests": 0,
+      "success_rate": 100.0,
+      "duration": 0.034961,
+      "start_time": "2026-03-16T12:26:20.632167",
+      "end_time": "2026-03-16T12:26:20.667128",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 3,
+        "avg_response_time": 0.010471502939860025,
+        "min_response_time": 0.007299184799194336,
+        "max_response_time": 0.012877702713012695,
+        "p50_response_time": 0.011237621307373047,
+        "p90_response_time": 0.012877702713012695,
+        "p95_response_time": 0.012877702713012695,
+        "p99_response_time": 0.012877702713012695
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        },
+        "response_time": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        },
+        "data_integrity": {
+          "total": 9,
+          "passed": 9,
+          "failed": 0
+        },
+        "business_logic": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "Public API Tests_list_merchants_1773635180633",
+          "test_name": "list_merchants",
+          "test_suite": "Public API Tests",
+          "description": "Test listing merchants",
+          "status": "passed",
+          "method": "GET",
+          "endpoint": "/api/merchant/list",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 04:26:20 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "code": 200,
+              "message": "success",
+              "data": {
+                "total": 5,
+                "merchantList": [
+                  {
+                    "id": 5,
+                    "name": "第一食堂",
+                    "logo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=300&fit=crop",
+                    "categoryId": 5,
+                    "description": "校园第一食堂，经济实惠，支持校园卡支付，干净卫生",
+                    "notice": "支持校园卡支付，学生专属优惠",
+                    "phone": "0571-88888805",
+                    "avgPrice": 10.0,
+                    "rating": 4.3,
+                    "salesVolume": 2000,
+                    "status": 1,
+                    "sortOrder": 100,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  },
+                  {
+                    "id": 1,
+                    "name": "张三快餐店",
+                    "logo": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=300&fit=crop",
+                    "categoryId": 1,
+                    "description": "主营各类快餐便当，营养健康，价格实惠，是校园内最受欢迎的快餐店之一",
+                    "notice": "新店开业，全场8折优惠！满20元免配送费",
+                    "phone": "0571-88888801",
+                    "avgPrice": 15.0,
+                    "rating": 4.8,
+                    "salesVolume": 1200,
+                    "status": 1,
+                    "sortOrder": 100,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  },
+                  {
+                    "id": 3,
+                    "name": "王五川菜馆",
+                    "logo": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&h=300&fit=crop",
+                    "categoryId": 3,
+                    "description": "正宗川菜，麻辣鲜香，招牌水煮鱼、麻婆豆腐不容错过",
+                    "notice": "招牌水煮鱼，不容错过！新客立减5元",
+                    "phone": "0571-88888803",
+                    "avgPrice": 35.0,
+                    "rating": 4.9,
+                    "salesVolume": 600,
+                    "status": 1,
+                    "sortOrder": 95,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  },
+                  {
+                    "id": 2,
+                    "name": "李四小吃店",
+                    "logo": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=300&fit=crop",
+                    "categoryId": 2,
+                    "description": "特色小吃，深夜食堂，营业至凌晨2点，满足你的夜宵需求",
+                    "notice": "营业至凌晨2点，夜宵首选！",
+                    "phone": "0571-88888802",
+                    "avgPrice": 12.0,
+                    "rating": 4.5,
+                    "salesVolume": 800,
+                    "status": 1,
+                    "sortOrder": 90,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  },
+                  {
+                    "id": 4,
+                    "name": "陈记甜品",
+                    "logo": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&h=300&fit=crop",
+                    "categoryId": 4,
+                    "description": "手工甜品，新鲜制作，每日限量供应，招牌杨枝甘露、芒果班戟",
+                    "notice": "每日限量供应，先到先得",
+                    "phone": "0571-88888804",
+                    "avgPrice": 20.0,
+                    "rating": 4.7,
+                    "salesVolume": 500,
+                    "status": 1,
+                    "sortOrder": 80,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  }
+                ],
+                "page": 1,
+                "pageSize": 10,
+                "totalPages": 1
+              },
+              "timestamp": 1773635180642,
+              "success": true
+            },
+            "response_time": 0.011237621307373047,
+            "url": "http://localhost:9090/api/merchant/list",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.645166"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.011s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.011s",
+              "timestamp": "2026-03-16T12:26:20.645180"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.645187"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: message",
+              "passed": true,
+              "message": "Required field 'message' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.645190"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: data",
+              "passed": true,
+              "message": "Required field 'data' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.645193"
+            },
+            {
+              "validation_type": "business_logic",
+              "name": "Business Logic: code",
+              "passed": true,
+              "message": "Business logic check 'code' passed",
+              "expected": "custom check",
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.645207"
+            }
+          ],
+          "performance": {
+            "response_time": 0.011237621307373047,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T12:26:20.633135",
+          "end_time": "2026-03-16T12:26:20.645212",
+          "duration": 0.012077,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "merchant",
+            "list",
+            "public"
+          ],
+          "priority": "high",
+          "is_success": true,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Public API Tests_list_categories_1773635180645",
+          "test_name": "list_categories",
+          "test_suite": "Public API Tests",
+          "description": "Test listing product categories",
+          "status": "passed",
+          "method": "GET",
+          "endpoint": "/api/product/category/list",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 04:26:20 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "code": 200,
+              "message": "success",
+              "data": [
+                {
+                  "id": 4,
+                  "name": "饮品",
+                  "parentId": 0,
+                  "sortOrder": 4,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 11,
+                  "name": "主食",
+                  "parentId": 0,
+                  "sortOrder": 4,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 3,
+                  "name": "面食类",
+                  "parentId": 0,
+                  "sortOrder": 3,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 7,
+                  "name": "饮品",
+                  "parentId": 0,
+                  "sortOrder": 3,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 10,
+                  "name": "凉菜",
+                  "parentId": 0,
+                  "sortOrder": 3,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 14,
+                  "name": "蛋糕",
+                  "parentId": 0,
+                  "sortOrder": 3,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 17,
+                  "name": "饮品",
+                  "parentId": 0,
+                  "sortOrder": 3,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 2,
+                  "name": "盖浇饭",
+                  "parentId": 0,
+                  "sortOrder": 2,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 6,
+                  "name": "炸物类",
+                  "parentId": 0,
+                  "sortOrder": 2,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 9,
+                  "name": "川菜系列",
+                  "parentId": 0,
+                  "sortOrder": 2,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 13,
+                  "name": "饮品",
+                  "parentId": 0,
+                  "sortOrder": 2,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 16,
+                  "name": "单点",
+                  "parentId": 0,
+                  "sortOrder": 2,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 1,
+                  "name": "招牌套餐",
+                  "parentId": 0,
+                  "sortOrder": 1,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 5,
+                  "name": "烧烤类",
+                  "parentId": 0,
+                  "sortOrder": 1,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 8,
+                  "name": "招牌菜",
+                  "parentId": 0,
+                  "sortOrder": 1,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 12,
+                  "name": "招牌甜品",
+                  "parentId": 0,
+                  "sortOrder": 1,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                },
+                {
+                  "id": 15,
+                  "name": "套餐",
+                  "parentId": 0,
+                  "sortOrder": 1,
+                  "status": 1,
+                  "isDeleted": 0,
+                  "level": 1
+                }
+              ],
+              "timestamp": 1773635180650,
+              "success": true
+            },
+            "response_time": 0.007299184799194336,
+            "url": "http://localhost:9090/api/product/category/list",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.653290"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.007s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.007s",
+              "timestamp": "2026-03-16T12:26:20.653302"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.653309"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: message",
+              "passed": true,
+              "message": "Required field 'message' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.653313"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: data",
+              "passed": true,
+              "message": "Required field 'data' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.653316"
+            },
+            {
+              "validation_type": "business_logic",
+              "name": "Business Logic: code",
+              "passed": true,
+              "message": "Business logic check 'code' passed",
+              "expected": "custom check",
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.653326"
+            }
+          ],
+          "performance": {
+            "response_time": 0.007299184799194336,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T12:26:20.645339",
+          "end_time": "2026-03-16T12:26:20.653331",
+          "duration": 0.007992,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "category",
+            "list",
+            "public"
+          ],
+          "priority": "medium",
+          "is_success": true,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Public API Tests_list_coupons_1773635180653",
+          "test_name": "list_coupons",
+          "test_suite": "Public API Tests",
+          "description": "Test listing coupons",
+          "status": "passed",
+          "method": "GET",
+          "endpoint": "/api/coupon/list",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 04:26:20 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "code": 200,
+              "message": "查询成功",
+              "data": [
+                {
+                  "id": 1,
+                  "name": "新用户专享券",
+                  "type": 1,
+                  "minAmount": 0.0,
+                  "discountAmount": 5.0,
+                  "discountRate": 1.0,
+                  "totalQuantity": 1000,
+                  "remainingQuantity": 799,
+                  "perLimit": 1,
+                  "startTime": "2026-01-01T00:00:00",
+                  "endTime": "2026-12-31T23:59:59",
+                  "status": 1,
+                  "description": "新用户注册即送，无门槛使用，全场通用",
+                  "isDeleted": 0,
+                  "createTime": "2026-03-14T13:52:12",
+                  "updateTime": "2026-03-14T13:52:12"
+                },
+                {
+                  "id": 2,
+                  "name": "满20减3",
+                  "type": 1,
+                  "minAmount": 20.0,
+                  "discountAmount": 3.0,
+                  "discountRate": 1.0,
+                  "totalQuantity": 500,
+                  "remainingQuantity": 400,
+                  "perLimit": 2,
+                  "startTime": "2026-01-01T00:00:00",
+                  "endTime": "2026-06-30T23:59:59",
+                  "status": 1,
+                  "description": "满20元可用，全场通用",
+                  "isDeleted": 0,
+                  "createTime": "2026-03-14T13:52:12",
+                  "updateTime": "2026-03-14T13:52:12"
+                },
+                {
+                  "id": 3,
+                  "name": "满50减10",
+                  "type": 1,
+                  "minAmount": 50.0,
+                  "discountAmount": 10.0,
+                  "discountRate": 1.0,
+                  "totalQuantity": 300,
+                  "remainingQuantity": 250,
+                  "perLimit": 1,
+                  "startTime": "2026-01-01T00:00:00",
+                  "endTime": "2026-06-30T23:59:59",
+                  "status": 1,
+                  "description": "满50元可用，全场通用",
+                  "isDeleted": 0,
+                  "createTime": "2026-03-14T13:52:12",
+                  "updateTime": "2026-03-14T13:52:12"
+                },
+                {
+                  "id": 4,
+                  "name": "满100减25",
+                  "type": 1,
+                  "minAmount": 100.0,
+                  "discountAmount": 25.0,
+                  "discountRate": 1.0,
+                  "totalQuantity": 200,
+                  "remainingQuantity": 180,
+                  "perLimit": 1,
+                  "startTime": "2026-01-01T00:00:00",
+                  "endTime": "2026-06-30T23:59:59",
+                  "status": 1,
+                  "description": "满100元可用，全场通用",
+                  "isDeleted": 0,
+                  "createTime": "2026-03-14T13:52:12",
+                  "updateTime": "2026-03-14T13:52:12"
+                },
+                {
+                  "id": 5,
+                  "name": "8折优惠券",
+                  "type": 2,
+                  "minAmount": 30.0,
+                  "discountAmount": 0.0,
+                  "discountRate": 0.8,
+                  "totalQuantity": 200,
+                  "remainingQuantity": 150,
+                  "perLimit": 1,
+                  "startTime": "2026-01-01T00:00:00",
+                  "endTime": "2026-03-31T23:59:59",
+                  "status": 1,
+                  "description": "满30元享8折优惠，最高优惠20元",
+                  "isDeleted": 0,
+                  "createTime": "2026-03-14T13:52:12",
+                  "updateTime": "2026-03-14T13:52:12"
+                },
+                {
+                  "id": 6,
+                  "name": "川菜馆专属券",
+                  "type": 1,
+                  "minAmount": 50.0,
+                  "discountAmount": 15.0,
+                  "discountRate": 1.0,
+                  "totalQuantity": 100,
+                  "remainingQuantity": 80,
+                  "perLimit": 1,
+                  "startTime": "2026-01-01T00:00:00",
+                  "endTime": "2026-12-31T23:59:59",
+                  "status": 1,
+                  "description": "王五川菜馆专属，满50减15",
+                  "isDeleted": 0,
+                  "createTime": "2026-03-14T13:52:12",
+                  "updateTime": "2026-03-14T13:52:12"
+                },
+                {
+                  "id": 7,
+                  "name": "甜品店专属券",
+                  "type": 1,
+                  "minAmount": 20.0,
+                  "discountAmount": 5.0,
+                  "discountRate": 1.0,
+                  "totalQuantity": 150,
+                  "remainingQuantity": 120,
+                  "perLimit": 2,
+                  "startTime": "2026-01-01T00:00:00",
+                  "endTime": "2026-12-31T23:59:59",
+                  "status": 1,
+                  "description": "陈记甜品专属，满20减5",
+                  "isDeleted": 0,
+                  "createTime": "2026-03-14T13:52:12",
+                  "updateTime": "2026-03-14T13:52:12"
+                }
+              ],
+              "timestamp": 1773635180662,
+              "success": true
+            },
+            "response_time": 0.012877702713012695,
+            "url": "http://localhost:9090/api/coupon/list",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.667003"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.013s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.013s",
+              "timestamp": "2026-03-16T12:26:20.667015"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.667022"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: message",
+              "passed": true,
+              "message": "Required field 'message' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.667025"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: data",
+              "passed": true,
+              "message": "Required field 'data' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T12:26:20.667027"
+            },
+            {
+              "validation_type": "business_logic",
+              "name": "Business Logic: code",
+              "passed": true,
+              "message": "Business logic check 'code' passed",
+              "expected": "custom check",
+              "actual": 200,
+              "timestamp": "2026-03-16T12:26:20.667035"
+            }
+          ],
+          "performance": {
+            "response_time": 0.012877702713012695,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T12:26:20.653436",
+          "end_time": "2026-03-16T12:26:20.667040",
+          "duration": 0.013604,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "coupon",
+            "list",
+            "public"
+          ],
+          "priority": "medium",
+          "is_success": true,
+          "failed_validations_count": 0
+        }
+      ]
+    }
+  },
+  "failed_tests": [],
+  "slow_tests": [],
+  "metadata": {
+    "environment": "dev",
+    "base_url": "http://localhost:9090",
+    "framework_version": "1.0.0"
+  }
+}

@@ -1,0 +1,41 @@
+# Development Environment Configuration
+env: dev
+api:
+  base_url: http://localhost:9090
+  timeout: 30
+  retry:
+    max_attempts: 3
+    backoff_factor: 1
+
+# Database configuration (optional, for test data cleanup)
+database:
+  host: localhost
+  port: 3306
+  name: campus_order
+  user: root
+  password: "123456"
+
+# Test data configuration - 使用SQL文件中的测试账号
+test_data:
+  user:
+    prefix: test_user_
+    password: "123456"
+    # SQL文件中的测试账号
+    admin_phone: "13800000001"
+    merchant1_phone: "13800000002"
+    merchant2_phone: "13800000003"
+    student1_phone: "13800000011"
+    student2_phone: "13800000012"
+  merchant:
+    prefix: test_merchant_
+  product:
+    prefix: test_product_
+
+# Logging configuration
+logging:
+  level: DEBUG
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Rate limiting configuration
+rate_limit:
+  enabled: false

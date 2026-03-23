@@ -1,0 +1,38 @@
+# Production Environment Configuration
+# WARNING: Use with caution! Only for read-only tests.
+env: prod
+api:
+  base_url: https://api.campus-order.com
+  timeout: 30
+  retry:
+    max_attempts: 3
+    backoff_factor: 2
+
+# Database configuration (optional, for test data cleanup)
+# NOTE: Production database should NOT be modified by tests
+database:
+  host: prod-db.campus-order.com
+  port: 3306
+  name: campus_order
+  user: test_user
+  password: "${DB_PASSWORD}"
+
+# Test data configuration
+test_data:
+  user:
+    prefix: test_user_
+    password: Test@123456
+  merchant:
+    prefix: test_merchant_
+  product:
+    prefix: test_product_
+
+# Logging configuration
+logging:
+  level: WARNING
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Rate limiting configuration
+rate_limit:
+  enabled: true
+  requests_per_second: 10

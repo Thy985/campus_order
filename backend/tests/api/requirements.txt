@@ -1,0 +1,37 @@
+# Python API Testing Framework Requirements
+
+# Core testing framework
+pytest>=7.4.0
+pytest-html>=3.2.0
+pytest-json-report>=1.5.0
+pytest-xdist>=3.3.0
+pytest-rerunfailures>=12.0
+pytest-timeout>=2.1.0
+
+# HTTP client
+requests>=2.31.0
+requests-toolbelt>=1.0.0
+
+# Data validation and generation
+jsonschema>=4.19.0
+faker>=19.3.0
+
+# Configuration management
+PyYAML>=6.0.1
+python-dotenv>=1.0.0
+
+# Logging and reporting
+loguru>=0.7.0
+rich>=13.5.0
+
+# Performance testing
+locust>=2.16.0
+
+# Database (optional, for test data cleanup)
+PyMySQL>=1.1.0
+SQLAlchemy>=2.0.0
+
+# Utilities
+python-dateutil>=2.8.2
+pydantic>=2.3.0
+tenacity>=8.2.0

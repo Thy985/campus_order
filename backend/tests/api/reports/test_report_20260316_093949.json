@@ -1,0 +1,2174 @@
+{
+  "report_info": {
+    "title": "API Test Report",
+    "generated_at": "2026-03-16T09:39:49.608215",
+    "generator": "CampusOrder API Test Framework",
+    "version": "1.0.0"
+  },
+  "summary": {
+    "total_suites": 6,
+    "total_tests": 13,
+    "passed_tests": 1,
+    "failed_tests": 7,
+    "error_tests": 5,
+    "skipped_tests": 0,
+    "success_rate": 7.69,
+    "duration": 31.559025,
+    "start_time": "2026-03-16T09:39:18.048650",
+    "end_time": "2026-03-16T09:39:49.607675",
+    "performance_stats": {
+      "total_requests": 8,
+      "avg_response_time": 0.121,
+      "min_response_time": 0.006,
+      "max_response_time": 0.822,
+      "p50_response_time": 0.027,
+      "p90_response_time": 0.822,
+      "p95_response_time": 0.822,
+      "p99_response_time": 0.822
+    },
+    "metadata": {
+      "environment": "dev",
+      "base_url": "http://localhost:9090",
+      "framework_version": "1.0.0"
+    }
+  },
+  "suites": {
+    "Authentication API Tests": {
+      "suite_name": "Authentication API Tests",
+      "description": "Tests for authentication endpoints (login, register, logout)",
+      "total_tests": 3,
+      "passed_tests": 0,
+      "failed_tests": 3,
+      "error_tests": 0,
+      "skipped_tests": 0,
+      "success_rate": 0.0,
+      "duration": 0.100046,
+      "start_time": "2026-03-16T09:39:18.049732",
+      "end_time": "2026-03-16T09:39:18.149778",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 3,
+        "avg_response_time": 0.028824408849080402,
+        "min_response_time": 0.016425371170043945,
+        "max_response_time": 0.043450117111206055,
+        "p50_response_time": 0.02659773826599121,
+        "p90_response_time": 0.043450117111206055,
+        "p95_response_time": 0.043450117111206055,
+        "p99_response_time": 0.043450117111206055
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 3,
+          "passed": 0,
+          "failed": 3
+        },
+        "response_time": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        },
+        "schema": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1
+        },
+        "data_integrity": {
+          "total": 8,
+          "passed": 7,
+          "failed": 1
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "Authentication API Tests_login_success_1773625158050",
+          "test_name": "login_success",
+          "test_suite": "Authentication API Tests",
+          "description": "Test successful login with valid credentials",
+          "status": "failed",
+          "method": "POST",
+          "endpoint": "/api/auth/login",
+          "request_headers": {},
+          "request_body": {
+            "username": "test_user",
+            "password": "test_pass"
+          },
+          "response": {
+            "status_code": 400,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+              "Connection": "close"
+            },
+            "body": {
+              "code": 400,
+              "message": "手机号或邮箱不能为空",
+              "timestamp": 1773625158064,
+              "success": false
+            },
+            "response_time": 0.016425371170043945,
+            "url": "http://localhost:9090/api/auth/login",
+            "method": "POST"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": false,
+              "message": "Expected status code 200, but got 400",
+              "expected": 200,
+              "actual": 400,
+              "timestamp": "2026-03-16T09:39:18.068152"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.016s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.016s",
+              "timestamp": "2026-03-16T09:39:18.068563"
+            },
+            {
+              "validation_type": "schema",
+              "name": "Schema (user)",
+              "passed": false,
+              "message": "Response does not match user schema",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.075862"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.076422"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: message",
+              "passed": true,
+              "message": "Required field 'message' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.076435"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: data",
+              "passed": false,
+              "message": "Response body missing field: data",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.076445"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Type Check: code",
+              "passed": true,
+              "message": "Field 'code' has correct type",
+              "expected": "int",
+              "actual": "int",
+              "timestamp": "2026-03-16T09:39:18.076918"
+            }
+          ],
+          "performance": {
+            "response_time": 0.016425371170043945,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:39:18.050879",
+          "end_time": "2026-03-16T09:39:18.076931",
+          "duration": 0.026052,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "auth",
+            "login",
+            "positive"
+          ],
+          "priority": "critical",
+          "is_success": false,
+          "failed_validations_count": 3
+        },
+        {
+          "test_id": "Authentication API Tests_login_invalid_credentials_1773625158077",
+          "test_name": "login_invalid_credentials",
+          "test_suite": "Authentication API Tests",
+          "description": "Test login with invalid credentials",
+          "status": "failed",
+          "method": "POST",
+          "endpoint": "/api/auth/login",
+          "request_headers": {},
+          "request_body": {
+            "username": "invalid",
+            "password": "wrong"
+          },
+          "response": {
+            "status_code": 400,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+              "Connection": "close"
+            },
+            "body": {
+              "code": 400,
+              "message": "手机号或邮箱不能为空",
+              "timestamp": 1773625158102,
+              "success": false
+            },
+            "response_time": 0.02659773826599121,
+            "url": "http://localhost:9090/api/auth/login",
+            "method": "POST"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": false,
+              "message": "Expected status code 401, but got 400",
+              "expected": 401,
+              "actual": 400,
+              "timestamp": "2026-03-16T09:39:18.104349"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.027s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.027s",
+              "timestamp": "2026-03-16T09:39:18.104864"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.104876"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: message",
+              "passed": true,
+              "message": "Required field 'message' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.104881"
+            }
+          ],
+          "performance": {
+            "response_time": 0.02659773826599121,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:39:18.077101",
+          "end_time": "2026-03-16T09:39:18.104890",
+          "duration": 0.027789,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "auth",
+            "login",
+            "negative"
+          ],
+          "priority": "high",
+          "is_success": false,
+          "failed_validations_count": 1
+        },
+        {
+          "test_id": "Authentication API Tests_register_success_1773625158105",
+          "test_name": "register_success",
+          "test_suite": "Authentication API Tests",
+          "description": "Test user registration",
+          "status": "failed",
+          "method": "POST",
+          "endpoint": "/api/auth/register",
+          "request_headers": {},
+          "request_body": {
+            "username": "new_user",
+            "password": "password123",
+            "phone": "13800138000"
+          },
+          "response": {
+            "status_code": 400,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+              "Connection": "close"
+            },
+            "body": {
+              "code": 400,
+              "message": "验证码不能为空",
+              "timestamp": 1773625158146,
+              "success": false
+            },
+            "response_time": 0.043450117111206055,
+            "url": "http://localhost:9090/api/auth/register",
+            "method": "POST"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": false,
+              "message": "Expected status code 200, but got 400",
+              "expected": 200,
+              "actual": 400,
+              "timestamp": "2026-03-16T09:39:18.149101"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.043s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.043s",
+              "timestamp": "2026-03-16T09:39:18.149625"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: code",
+              "passed": true,
+              "message": "Required field 'code' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.149636"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: message",
+              "passed": true,
+              "message": "Required field 'message' exists",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.149639"
+            }
+          ],
+          "performance": {
+            "response_time": 0.043450117111206055,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:39:18.105047",
+          "end_time": "2026-03-16T09:39:18.149645",
+          "duration": 0.044598,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "auth",
+            "register",
+            "positive"
+          ],
+          "priority": "critical",
+          "is_success": false,
+          "failed_validations_count": 1
+        }
+      ]
+    },
+    "User API Tests": {
+      "suite_name": "User API Tests",
+      "description": "Tests for user management endpoints",
+      "total_tests": 2,
+      "passed_tests": 0,
+      "failed_tests": 2,
+      "error_tests": 0,
+      "skipped_tests": 0,
+      "success_rate": 0.0,
+      "duration": 0.047338,
+      "start_time": "2026-03-16T09:39:18.150768",
+      "end_time": "2026-03-16T09:39:18.198106",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 2,
+        "avg_response_time": 0.01820659637451172,
+        "min_response_time": 0.006184816360473633,
+        "max_response_time": 0.030228376388549805,
+        "p50_response_time": 0.030228376388549805,
+        "p90_response_time": 0.030228376388549805,
+        "p95_response_time": 0.030228376388549805,
+        "p99_response_time": 0.030228376388549805
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 2,
+          "passed": 0,
+          "failed": 2
+        },
+        "response_time": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0
+        },
+        "schema": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1
+        },
+        "data_integrity": {
+          "total": 2,
+          "passed": 0,
+          "failed": 2
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "User API Tests_get_user_profile_1773625158151",
+          "test_name": "get_user_profile",
+          "test_suite": "User API Tests",
+          "description": "Test getting user profile",
+          "status": "failed",
+          "method": "GET",
+          "endpoint": "/api/user/profile",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 401,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "code": 401,
+              "message": "No login credentials provided",
+              "timestamp": 1773625158179,
+              "success": false
+            },
+            "response_time": 0.030228376388549805,
+            "url": "http://localhost:9090/api/user/profile",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": false,
+              "message": "Expected status code 200, but got 401",
+              "expected": 200,
+              "actual": 401,
+              "timestamp": "2026-03-16T09:39:18.182675"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.030s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.030s",
+              "timestamp": "2026-03-16T09:39:18.183145"
+            },
+            {
+              "validation_type": "schema",
+              "name": "Schema (user)",
+              "passed": false,
+              "message": "Response does not match user schema",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.189158"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: id",
+              "passed": false,
+              "message": "Response body missing field: id",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.189627"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: username",
+              "passed": false,
+              "message": "Response body missing field: username",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.190135"
+            }
+          ],
+          "performance": {
+            "response_time": 0.030228376388549805,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:39:18.151841",
+          "end_time": "2026-03-16T09:39:18.190576",
+          "duration": 0.038735,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "user",
+            "profile",
+            "positive"
+          ],
+          "priority": "high",
+          "is_success": false,
+          "failed_validations_count": 4
+        },
+        {
+          "test_id": "User API Tests_update_user_profile_1773625158190",
+          "test_name": "update_user_profile",
+          "test_suite": "User API Tests",
+          "description": "Test updating user profile",
+          "status": "failed",
+          "method": "PUT",
+          "endpoint": "/api/user/profile",
+          "request_headers": {},
+          "request_body": {
+            "nickname": "Updated Name"
+          },
+          "response": {
+            "status_code": 401,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "code": 401,
+              "message": "No login credentials provided",
+              "timestamp": 1773625158194,
+              "success": false
+            },
+            "response_time": 0.006184816360473633,
+            "url": "http://localhost:9090/api/user/profile",
+            "method": "PUT"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": false,
+              "message": "Expected status code 200, but got 401",
+              "expected": 200,
+              "actual": 401,
+              "timestamp": "2026-03-16T09:39:18.197485"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.006s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.006s",
+              "timestamp": "2026-03-16T09:39:18.197955"
+            }
+          ],
+          "performance": {
+            "response_time": 0.006184816360473633,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:39:18.190735",
+          "end_time": "2026-03-16T09:39:18.197964",
+          "duration": 0.007229,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "user",
+            "profile",
+            "update"
+          ],
+          "priority": "medium",
+          "is_success": false,
+          "failed_validations_count": 1
+        }
+      ]
+    },
+    "Merchant API Tests": {
+      "suite_name": "Merchant API Tests",
+      "description": "Tests for merchant endpoints",
+      "total_tests": 2,
+      "passed_tests": 0,
+      "failed_tests": 1,
+      "error_tests": 1,
+      "skipped_tests": 0,
+      "success_rate": 0.0,
+      "duration": 6.119301,
+      "start_time": "2026-03-16T09:39:18.198981",
+      "end_time": "2026-03-16T09:39:24.318282",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 1,
+        "avg_response_time": 0.016010522842407227,
+        "min_response_time": 0.016010522842407227,
+        "max_response_time": 0.016010522842407227,
+        "p50_response_time": 0.016010522842407227,
+        "p90_response_time": 0.016010522842407227,
+        "p95_response_time": 0.016010522842407227,
+        "p99_response_time": 0.016010522842407227
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        "response_time": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        "schema": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1
+        },
+        "data_integrity": {
+          "total": 2,
+          "passed": 0,
+          "failed": 2
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "Merchant API Tests_list_merchants_1773625158199",
+          "test_name": "list_merchants",
+          "test_suite": "Merchant API Tests",
+          "description": "Test listing merchants",
+          "status": "failed",
+          "method": "GET",
+          "endpoint": "/api/merchant/list",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "code": 200,
+              "message": "success",
+              "data": {
+                "total": 5,
+                "merchantList": [
+                  {
+                    "id": 5,
+                    "name": "第一食堂",
+                    "logo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=300&fit=crop",
+                    "categoryId": 5,
+                    "description": "校园第一食堂，经济实惠，支持校园卡支付，干净卫生",
+                    "notice": "支持校园卡支付，学生专属优惠",
+                    "phone": "0571-88888805",
+                    "avgPrice": 10.0,
+                    "rating": 4.3,
+                    "salesVolume": 2000,
+                    "status": 1,
+                    "sortOrder": 100,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  },
+                  {
+                    "id": 1,
+                    "name": "张三快餐店",
+                    "logo": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=300&fit=crop",
+                    "categoryId": 1,
+                    "description": "主营各类快餐便当，营养健康，价格实惠，是校园内最受欢迎的快餐店之一",
+                    "notice": "新店开业，全场8折优惠！满20元免配送费",
+                    "phone": "0571-88888801",
+                    "avgPrice": 15.0,
+                    "rating": 4.8,
+                    "salesVolume": 1200,
+                    "status": 1,
+                    "sortOrder": 100,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  },
+                  {
+                    "id": 3,
+                    "name": "王五川菜馆",
+                    "logo": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&h=300&fit=crop",
+                    "categoryId": 3,
+                    "description": "正宗川菜，麻辣鲜香，招牌水煮鱼、麻婆豆腐不容错过",
+                    "notice": "招牌水煮鱼，不容错过！新客立减5元",
+                    "phone": "0571-88888803",
+                    "avgPrice": 35.0,
+                    "rating": 4.9,
+                    "salesVolume": 600,
+                    "status": 1,
+                    "sortOrder": 95,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  },
+                  {
+                    "id": 2,
+                    "name": "李四小吃店",
+                    "logo": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=300&fit=crop",
+                    "categoryId": 2,
+                    "description": "特色小吃，深夜食堂，营业至凌晨2点，满足你的夜宵需求",
+                    "notice": "营业至凌晨2点，夜宵首选！",
+                    "phone": "0571-88888802",
+                    "avgPrice": 12.0,
+                    "rating": 4.5,
+                    "salesVolume": 800,
+                    "status": 1,
+                    "sortOrder": 90,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  },
+                  {
+                    "id": 4,
+                    "name": "陈记甜品",
+                    "logo": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&h=200&fit=crop",
+                    "banner": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&h=300&fit=crop",
+                    "categoryId": 4,
+                    "description": "手工甜品，新鲜制作，每日限量供应，招牌杨枝甘露、芒果班戟",
+                    "notice": "每日限量供应，先到先得",
+                    "phone": "0571-88888804",
+                    "avgPrice": 20.0,
+                    "rating": 4.7,
+                    "salesVolume": 500,
+                    "status": 1,
+                    "sortOrder": 80,
+                    "isDeleted": 0,
+                    "address": "",
+                    "minOrderAmount": 0.0,
+                    "createTime": "2026-03-14T13:52:11",
+                    "updateTime": "2026-03-14T14:18:53"
+                  }
+                ],
+                "page": 1,
+                "pageSize": 10,
+                "totalPages": 1
+              },
+              "timestamp": 1773625158213,
+              "success": true
+            },
+            "response_time": 0.016010522842407227,
+            "url": "http://localhost:9090/api/merchant/list",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T09:39:18.216806"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.016s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.016s",
+              "timestamp": "2026-03-16T09:39:18.216822"
+            },
+            {
+              "validation_type": "schema",
+              "name": "Schema (pagination)",
+              "passed": false,
+              "message": "Response does not match pagination schema",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.220598"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: list",
+              "passed": false,
+              "message": "Response body missing field: list",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.221086"
+            },
+            {
+              "validation_type": "data_integrity",
+              "name": "Required Field: total",
+              "passed": false,
+              "message": "Response body missing field: total",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:18.221599"
+            }
+          ],
+          "performance": {
+            "response_time": 0.016010522842407227,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:39:18.199943",
+          "end_time": "2026-03-16T09:39:18.222135",
+          "duration": 0.022192,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "merchant",
+            "list",
+            "positive"
+          ],
+          "priority": "high",
+          "is_success": false,
+          "failed_validations_count": 3
+        },
+        {
+          "test_id": "Merchant API Tests_get_merchant_detail_1773625158222",
+          "test_name": "get_merchant_detail",
+          "test_suite": "Merchant API Tests",
+          "description": "Test getting merchant details",
+          "status": "error",
+          "method": "",
+          "endpoint": "",
+          "request_headers": {},
+          "request_body": null,
+          "response": null,
+          "validations": [],
+          "performance": null,
+          "start_time": "2026-03-16T09:39:18.222290",
+          "end_time": "2026-03-16T09:39:24.318046",
+          "duration": 6.095756,
+          "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/merchant/1 (Caused by ResponseError('too many 500 error responses'))",
+          "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/merchant/1 (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/merchant/1 (Caused by ResponseError('too many 500 error responses'))\n",
+          "tags": [
+            "merchant",
+            "detail",
+            "positive"
+          ],
+          "priority": "high",
+          "is_success": false,
+          "failed_validations_count": 0
+        }
+      ]
+    },
+    "Product API Tests": {
+      "suite_name": "Product API Tests",
+      "description": "Tests for product endpoints",
+      "total_tests": 2,
+      "passed_tests": 0,
+      "failed_tests": 0,
+      "error_tests": 2,
+      "skipped_tests": 0,
+      "success_rate": 0.0,
+      "duration": 12.245273,
+      "start_time": "2026-03-16T09:39:24.319157",
+      "end_time": "2026-03-16T09:39:36.564430",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {},
+      "validation_summary": {},
+      "test_cases": [
+        {
+          "test_id": "Product API Tests_list_products_1773625164319",
+          "test_name": "list_products",
+          "test_suite": "Product API Tests",
+          "description": "Test listing products",
+          "status": "error",
+          "method": "",
+          "endpoint": "",
+          "request_headers": {},
+          "request_body": null,
+          "response": null,
+          "validations": [],
+          "performance": null,
+          "start_time": "2026-03-16T09:39:24.319936",
+          "end_time": "2026-03-16T09:39:30.439883",
+          "duration": 6.119947,
+          "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/list (Caused by ResponseError('too many 500 error responses'))",
+          "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/list (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/list (Caused by ResponseError('too many 500 error responses'))\n",
+          "tags": [
+            "product",
+            "list",
+            "positive"
+          ],
+          "priority": "high",
+          "is_success": false,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Product API Tests_get_product_detail_1773625170440",
+          "test_name": "get_product_detail",
+          "test_suite": "Product API Tests",
+          "description": "Test getting product details",
+          "status": "error",
+          "method": "",
+          "endpoint": "",
+          "request_headers": {},
+          "request_body": null,
+          "response": null,
+          "validations": [],
+          "performance": null,
+          "start_time": "2026-03-16T09:39:30.440186",
+          "end_time": "2026-03-16T09:39:36.564167",
+          "duration": 6.123981,
+          "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/1 (Caused by ResponseError('too many 500 error responses'))",
+          "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/1 (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/1 (Caused by ResponseError('too many 500 error responses'))\n",
+          "tags": [
+            "product",
+            "detail",
+            "positive"
+          ],
+          "priority": "high",
+          "is_success": false,
+          "failed_validations_count": 0
+        }
+      ]
+    },
+    "Order API Tests": {
+      "suite_name": "Order API Tests",
+      "description": "Tests for order management endpoints",
+      "total_tests": 2,
+      "passed_tests": 0,
+      "failed_tests": 1,
+      "error_tests": 1,
+      "skipped_tests": 0,
+      "success_rate": 0.0,
+      "duration": 6.128664,
+      "start_time": "2026-03-16T09:39:36.565226",
+      "end_time": "2026-03-16T09:39:42.693890",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 1,
+        "avg_response_time": 0.009947538375854492,
+        "min_response_time": 0.009947538375854492,
+        "max_response_time": 0.009947538375854492,
+        "p50_response_time": 0.009947538375854492,
+        "p90_response_time": 0.009947538375854492,
+        "p95_response_time": 0.009947538375854492,
+        "p99_response_time": 0.009947538375854492
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1
+        },
+        "response_time": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        "schema": {
+          "total": 1,
+          "passed": 0,
+          "failed": 1
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "Order API Tests_create_order_1773625176566",
+          "test_name": "create_order",
+          "test_suite": "Order API Tests",
+          "description": "Test creating a new order",
+          "status": "error",
+          "method": "",
+          "endpoint": "",
+          "request_headers": {},
+          "request_body": null,
+          "response": null,
+          "validations": [],
+          "performance": null,
+          "start_time": "2026-03-16T09:39:36.566276",
+          "end_time": "2026-03-16T09:39:42.672540",
+          "duration": 6.106264,
+          "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/order/create (Caused by ResponseError('too many 500 error responses'))",
+          "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/order/create (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 418, in test_endpoint\n    response = self.http_client.post(endpoint, json_data=request_body, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 200, in post\n    return self._make_request(\"POST\", endpoint, **kwargs)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/order/create (Caused by ResponseError('too many 500 error responses'))\n",
+          "tags": [
+            "order",
+            "create",
+            "positive"
+          ],
+          "priority": "critical",
+          "is_success": false,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Order API Tests_list_orders_1773625182673",
+          "test_name": "list_orders",
+          "test_suite": "Order API Tests",
+          "description": "Test listing user orders",
+          "status": "failed",
+          "method": "GET",
+          "endpoint": "/api/order/list",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 401,
+            "headers": {
+              "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:39:42 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "code": 401,
+              "message": "No login credentials provided",
+              "timestamp": 1773625182681,
+              "success": false
+            },
+            "response_time": 0.009947538375854492,
+            "url": "http://localhost:9090/api/order/list",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": false,
+              "message": "Expected status code 200, but got 401",
+              "expected": 200,
+              "actual": 401,
+              "timestamp": "2026-03-16T09:39:42.684312"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.010s is within limit",
+              "expected": "<= 2.0s",
+              "actual": "0.010s",
+              "timestamp": "2026-03-16T09:39:42.684869"
+            },
+            {
+              "validation_type": "schema",
+              "name": "Schema (pagination)",
+              "passed": false,
+              "message": "Response does not match pagination schema",
+              "expected": null,
+              "actual": null,
+              "timestamp": "2026-03-16T09:39:42.693105"
+            }
+          ],
+          "performance": {
+            "response_time": 0.009947538375854492,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:39:42.673046",
+          "end_time": "2026-03-16T09:39:42.693671",
+          "duration": 0.020625,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "order",
+            "list",
+            "positive"
+          ],
+          "priority": "high",
+          "is_success": false,
+          "failed_validations_count": 2
+        }
+      ]
+    },
+    "Health Check Tests": {
+      "suite_name": "Health Check Tests",
+      "description": "Basic health check and connectivity tests",
+      "total_tests": 2,
+      "passed_tests": 1,
+      "failed_tests": 0,
+      "error_tests": 1,
+      "skipped_tests": 0,
+      "success_rate": 50.0,
+      "duration": 6.912275,
+      "start_time": "2026-03-16T09:39:42.694981",
+      "end_time": "2026-03-16T09:39:49.607256",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 1,
+        "avg_response_time": 0.8223428726196289,
+        "min_response_time": 0.8223428726196289,
+        "max_response_time": 0.8223428726196289,
+        "p50_response_time": 0.8223428726196289,
+        "p90_response_time": 0.8223428726196289,
+        "p95_response_time": 0.8223428726196289,
+        "p99_response_time": 0.8223428726196289
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        "response_time": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "Health Check Tests_health_check_1773625182696",
+          "test_name": "health_check",
+          "test_suite": "Health Check Tests",
+          "description": "Test system health endpoint",
+          "status": "passed",
+          "method": "GET",
+          "endpoint": "/actuator/health",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:39:42 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "status": "UP"
+            },
+            "response_time": 0.8223428726196289,
+            "url": "http://localhost:9090/actuator/health",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T09:39:43.519561"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.822s is within limit",
+              "expected": "<= 1.0s",
+              "actual": "0.822s",
+              "timestamp": "2026-03-16T09:39:43.519582"
+            }
+          ],
+          "performance": {
+            "response_time": 0.8223428726196289,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:39:42.696249",
+          "end_time": "2026-03-16T09:39:43.519594",
+          "duration": 0.823345,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "health",
+            "monitoring"
+          ],
+          "priority": "critical",
+          "is_success": true,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Health Check Tests_api_info_1773625183519",
+          "test_name": "api_info",
+          "test_suite": "Health Check Tests",
+          "description": "Test API info endpoint",
+          "status": "error",
+          "method": "",
+          "endpoint": "",
+          "request_headers": {},
+          "request_body": null,
+          "response": null,
+          "validations": [],
+          "performance": null,
+          "start_time": "2026-03-16T09:39:43.519789",
+          "end_time": "2026-03-16T09:39:49.607000",
+          "duration": 6.087211,
+          "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))",
+          "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))\n",
+          "tags": [
+            "info",
+            "monitoring"
+          ],
+          "priority": "low",
+          "is_success": false,
+          "failed_validations_count": 0
+        }
+      ]
+    }
+  },
+  "failed_tests": [
+    {
+      "test_id": "Authentication API Tests_login_success_1773625158050",
+      "test_name": "login_success",
+      "test_suite": "Authentication API Tests",
+      "description": "Test successful login with valid credentials",
+      "status": "failed",
+      "method": "POST",
+      "endpoint": "/api/auth/login",
+      "request_headers": {},
+      "request_body": {
+        "username": "test_user",
+        "password": "test_pass"
+      },
+      "response": {
+        "status_code": 400,
+        "headers": {
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "Content-Type": "application/json",
+          "Transfer-Encoding": "chunked",
+          "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+          "Connection": "close"
+        },
+        "body": {
+          "code": 400,
+          "message": "手机号或邮箱不能为空",
+          "timestamp": 1773625158064,
+          "success": false
+        },
+        "response_time": 0.016425371170043945,
+        "url": "http://localhost:9090/api/auth/login",
+        "method": "POST"
+      },
+      "validations": [
+        {
+          "validation_type": "status_code",
+          "name": "HTTP Status Code",
+          "passed": false,
+          "message": "Expected status code 200, but got 400",
+          "expected": 200,
+          "actual": 400,
+          "timestamp": "2026-03-16T09:39:18.068152"
+        },
+        {
+          "validation_type": "response_time",
+          "name": "Response Time",
+          "passed": true,
+          "message": "Response time 0.016s is within limit",
+          "expected": "<= 2.0s",
+          "actual": "0.016s",
+          "timestamp": "2026-03-16T09:39:18.068563"
+        },
+        {
+          "validation_type": "schema",
+          "name": "Schema (user)",
+          "passed": false,
+          "message": "Response does not match user schema",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.075862"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: code",
+          "passed": true,
+          "message": "Required field 'code' exists",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.076422"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: message",
+          "passed": true,
+          "message": "Required field 'message' exists",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.076435"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: data",
+          "passed": false,
+          "message": "Response body missing field: data",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.076445"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Type Check: code",
+          "passed": true,
+          "message": "Field 'code' has correct type",
+          "expected": "int",
+          "actual": "int",
+          "timestamp": "2026-03-16T09:39:18.076918"
+        }
+      ],
+      "performance": {
+        "response_time": 0.016425371170043945,
+        "request_size": 0,
+        "response_size": 0,
+        "dns_lookup_time": 0.0,
+        "connection_time": 0.0,
+        "ssl_handshake_time": 0.0,
+        "ttfb": 0.0
+      },
+      "start_time": "2026-03-16T09:39:18.050879",
+      "end_time": "2026-03-16T09:39:18.076931",
+      "duration": 0.026052,
+      "error_message": "",
+      "error_traceback": "",
+      "tags": [
+        "auth",
+        "login",
+        "positive"
+      ],
+      "priority": "critical",
+      "is_success": false,
+      "failed_validations_count": 3
+    },
+    {
+      "test_id": "Authentication API Tests_login_invalid_credentials_1773625158077",
+      "test_name": "login_invalid_credentials",
+      "test_suite": "Authentication API Tests",
+      "description": "Test login with invalid credentials",
+      "status": "failed",
+      "method": "POST",
+      "endpoint": "/api/auth/login",
+      "request_headers": {},
+      "request_body": {
+        "username": "invalid",
+        "password": "wrong"
+      },
+      "response": {
+        "status_code": 400,
+        "headers": {
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "Content-Type": "application/json",
+          "Transfer-Encoding": "chunked",
+          "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+          "Connection": "close"
+        },
+        "body": {
+          "code": 400,
+          "message": "手机号或邮箱不能为空",
+          "timestamp": 1773625158102,
+          "success": false
+        },
+        "response_time": 0.02659773826599121,
+        "url": "http://localhost:9090/api/auth/login",
+        "method": "POST"
+      },
+      "validations": [
+        {
+          "validation_type": "status_code",
+          "name": "HTTP Status Code",
+          "passed": false,
+          "message": "Expected status code 401, but got 400",
+          "expected": 401,
+          "actual": 400,
+          "timestamp": "2026-03-16T09:39:18.104349"
+        },
+        {
+          "validation_type": "response_time",
+          "name": "Response Time",
+          "passed": true,
+          "message": "Response time 0.027s is within limit",
+          "expected": "<= 2.0s",
+          "actual": "0.027s",
+          "timestamp": "2026-03-16T09:39:18.104864"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: code",
+          "passed": true,
+          "message": "Required field 'code' exists",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.104876"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: message",
+          "passed": true,
+          "message": "Required field 'message' exists",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.104881"
+        }
+      ],
+      "performance": {
+        "response_time": 0.02659773826599121,
+        "request_size": 0,
+        "response_size": 0,
+        "dns_lookup_time": 0.0,
+        "connection_time": 0.0,
+        "ssl_handshake_time": 0.0,
+        "ttfb": 0.0
+      },
+      "start_time": "2026-03-16T09:39:18.077101",
+      "end_time": "2026-03-16T09:39:18.104890",
+      "duration": 0.027789,
+      "error_message": "",
+      "error_traceback": "",
+      "tags": [
+        "auth",
+        "login",
+        "negative"
+      ],
+      "priority": "high",
+      "is_success": false,
+      "failed_validations_count": 1
+    },
+    {
+      "test_id": "Authentication API Tests_register_success_1773625158105",
+      "test_name": "register_success",
+      "test_suite": "Authentication API Tests",
+      "description": "Test user registration",
+      "status": "failed",
+      "method": "POST",
+      "endpoint": "/api/auth/register",
+      "request_headers": {},
+      "request_body": {
+        "username": "new_user",
+        "password": "password123",
+        "phone": "13800138000"
+      },
+      "response": {
+        "status_code": 400,
+        "headers": {
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "Content-Type": "application/json",
+          "Transfer-Encoding": "chunked",
+          "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+          "Connection": "close"
+        },
+        "body": {
+          "code": 400,
+          "message": "验证码不能为空",
+          "timestamp": 1773625158146,
+          "success": false
+        },
+        "response_time": 0.043450117111206055,
+        "url": "http://localhost:9090/api/auth/register",
+        "method": "POST"
+      },
+      "validations": [
+        {
+          "validation_type": "status_code",
+          "name": "HTTP Status Code",
+          "passed": false,
+          "message": "Expected status code 200, but got 400",
+          "expected": 200,
+          "actual": 400,
+          "timestamp": "2026-03-16T09:39:18.149101"
+        },
+        {
+          "validation_type": "response_time",
+          "name": "Response Time",
+          "passed": true,
+          "message": "Response time 0.043s is within limit",
+          "expected": "<= 2.0s",
+          "actual": "0.043s",
+          "timestamp": "2026-03-16T09:39:18.149625"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: code",
+          "passed": true,
+          "message": "Required field 'code' exists",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.149636"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: message",
+          "passed": true,
+          "message": "Required field 'message' exists",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.149639"
+        }
+      ],
+      "performance": {
+        "response_time": 0.043450117111206055,
+        "request_size": 0,
+        "response_size": 0,
+        "dns_lookup_time": 0.0,
+        "connection_time": 0.0,
+        "ssl_handshake_time": 0.0,
+        "ttfb": 0.0
+      },
+      "start_time": "2026-03-16T09:39:18.105047",
+      "end_time": "2026-03-16T09:39:18.149645",
+      "duration": 0.044598,
+      "error_message": "",
+      "error_traceback": "",
+      "tags": [
+        "auth",
+        "register",
+        "positive"
+      ],
+      "priority": "critical",
+      "is_success": false,
+      "failed_validations_count": 1
+    },
+    {
+      "test_id": "User API Tests_get_user_profile_1773625158151",
+      "test_name": "get_user_profile",
+      "test_suite": "User API Tests",
+      "description": "Test getting user profile",
+      "status": "failed",
+      "method": "GET",
+      "endpoint": "/api/user/profile",
+      "request_headers": {},
+      "request_body": null,
+      "response": {
+        "status_code": 401,
+        "headers": {
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "Content-Type": "application/json",
+          "Transfer-Encoding": "chunked",
+          "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+          "Keep-Alive": "timeout=60",
+          "Connection": "keep-alive"
+        },
+        "body": {
+          "code": 401,
+          "message": "No login credentials provided",
+          "timestamp": 1773625158179,
+          "success": false
+        },
+        "response_time": 0.030228376388549805,
+        "url": "http://localhost:9090/api/user/profile",
+        "method": "GET"
+      },
+      "validations": [
+        {
+          "validation_type": "status_code",
+          "name": "HTTP Status Code",
+          "passed": false,
+          "message": "Expected status code 200, but got 401",
+          "expected": 200,
+          "actual": 401,
+          "timestamp": "2026-03-16T09:39:18.182675"
+        },
+        {
+          "validation_type": "response_time",
+          "name": "Response Time",
+          "passed": true,
+          "message": "Response time 0.030s is within limit",
+          "expected": "<= 2.0s",
+          "actual": "0.030s",
+          "timestamp": "2026-03-16T09:39:18.183145"
+        },
+        {
+          "validation_type": "schema",
+          "name": "Schema (user)",
+          "passed": false,
+          "message": "Response does not match user schema",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.189158"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: id",
+          "passed": false,
+          "message": "Response body missing field: id",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.189627"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: username",
+          "passed": false,
+          "message": "Response body missing field: username",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.190135"
+        }
+      ],
+      "performance": {
+        "response_time": 0.030228376388549805,
+        "request_size": 0,
+        "response_size": 0,
+        "dns_lookup_time": 0.0,
+        "connection_time": 0.0,
+        "ssl_handshake_time": 0.0,
+        "ttfb": 0.0
+      },
+      "start_time": "2026-03-16T09:39:18.151841",
+      "end_time": "2026-03-16T09:39:18.190576",
+      "duration": 0.038735,
+      "error_message": "",
+      "error_traceback": "",
+      "tags": [
+        "user",
+        "profile",
+        "positive"
+      ],
+      "priority": "high",
+      "is_success": false,
+      "failed_validations_count": 4
+    },
+    {
+      "test_id": "User API Tests_update_user_profile_1773625158190",
+      "test_name": "update_user_profile",
+      "test_suite": "User API Tests",
+      "description": "Test updating user profile",
+      "status": "failed",
+      "method": "PUT",
+      "endpoint": "/api/user/profile",
+      "request_headers": {},
+      "request_body": {
+        "nickname": "Updated Name"
+      },
+      "response": {
+        "status_code": 401,
+        "headers": {
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "Content-Type": "application/json",
+          "Transfer-Encoding": "chunked",
+          "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+          "Keep-Alive": "timeout=60",
+          "Connection": "keep-alive"
+        },
+        "body": {
+          "code": 401,
+          "message": "No login credentials provided",
+          "timestamp": 1773625158194,
+          "success": false
+        },
+        "response_time": 0.006184816360473633,
+        "url": "http://localhost:9090/api/user/profile",
+        "method": "PUT"
+      },
+      "validations": [
+        {
+          "validation_type": "status_code",
+          "name": "HTTP Status Code",
+          "passed": false,
+          "message": "Expected status code 200, but got 401",
+          "expected": 200,
+          "actual": 401,
+          "timestamp": "2026-03-16T09:39:18.197485"
+        },
+        {
+          "validation_type": "response_time",
+          "name": "Response Time",
+          "passed": true,
+          "message": "Response time 0.006s is within limit",
+          "expected": "<= 2.0s",
+          "actual": "0.006s",
+          "timestamp": "2026-03-16T09:39:18.197955"
+        }
+      ],
+      "performance": {
+        "response_time": 0.006184816360473633,
+        "request_size": 0,
+        "response_size": 0,
+        "dns_lookup_time": 0.0,
+        "connection_time": 0.0,
+        "ssl_handshake_time": 0.0,
+        "ttfb": 0.0
+      },
+      "start_time": "2026-03-16T09:39:18.190735",
+      "end_time": "2026-03-16T09:39:18.197964",
+      "duration": 0.007229,
+      "error_message": "",
+      "error_traceback": "",
+      "tags": [
+        "user",
+        "profile",
+        "update"
+      ],
+      "priority": "medium",
+      "is_success": false,
+      "failed_validations_count": 1
+    },
+    {
+      "test_id": "Merchant API Tests_list_merchants_1773625158199",
+      "test_name": "list_merchants",
+      "test_suite": "Merchant API Tests",
+      "description": "Test listing merchants",
+      "status": "failed",
+      "method": "GET",
+      "endpoint": "/api/merchant/list",
+      "request_headers": {},
+      "request_body": null,
+      "response": {
+        "status_code": 200,
+        "headers": {
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "Content-Type": "application/json",
+          "Transfer-Encoding": "chunked",
+          "Date": "Mon, 16 Mar 2026 01:39:18 GMT",
+          "Keep-Alive": "timeout=60",
+          "Connection": "keep-alive"
+        },
+        "body": {
+          "code": 200,
+          "message": "success",
+          "data": {
+            "total": 5,
+            "merchantList": [
+              {
+                "id": 5,
+                "name": "第一食堂",
+                "logo": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop",
+                "banner": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=300&fit=crop",
+                "categoryId": 5,
+                "description": "校园第一食堂，经济实惠，支持校园卡支付，干净卫生",
+                "notice": "支持校园卡支付，学生专属优惠",
+                "phone": "0571-88888805",
+                "avgPrice": 10.0,
+                "rating": 4.3,
+                "salesVolume": 2000,
+                "status": 1,
+                "sortOrder": 100,
+                "isDeleted": 0,
+                "address": "",
+                "minOrderAmount": 0.0,
+                "createTime": "2026-03-14T13:52:11",
+                "updateTime": "2026-03-14T14:18:53"
+              },
+              {
+                "id": 1,
+                "name": "张三快餐店",
+                "logo": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&h=200&fit=crop",
+                "banner": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=300&fit=crop",
+                "categoryId": 1,
+                "description": "主营各类快餐便当，营养健康，价格实惠，是校园内最受欢迎的快餐店之一",
+                "notice": "新店开业，全场8折优惠！满20元免配送费",
+                "phone": "0571-88888801",
+                "avgPrice": 15.0,
+                "rating": 4.8,
+                "salesVolume": 1200,
+                "status": 1,
+                "sortOrder": 100,
+                "isDeleted": 0,
+                "address": "",
+                "minOrderAmount": 0.0,
+                "createTime": "2026-03-14T13:52:11",
+                "updateTime": "2026-03-14T14:18:53"
+              },
+              {
+                "id": 3,
+                "name": "王五川菜馆",
+                "logo": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=200&h=200&fit=crop",
+                "banner": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&h=300&fit=crop",
+                "categoryId": 3,
+                "description": "正宗川菜，麻辣鲜香，招牌水煮鱼、麻婆豆腐不容错过",
+                "notice": "招牌水煮鱼，不容错过！新客立减5元",
+                "phone": "0571-88888803",
+                "avgPrice": 35.0,
+                "rating": 4.9,
+                "salesVolume": 600,
+                "status": 1,
+                "sortOrder": 95,
+                "isDeleted": 0,
+                "address": "",
+                "minOrderAmount": 0.0,
+                "createTime": "2026-03-14T13:52:11",
+                "updateTime": "2026-03-14T14:18:53"
+              },
+              {
+                "id": 2,
+                "name": "李四小吃店",
+                "logo": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&h=200&fit=crop",
+                "banner": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=300&fit=crop",
+                "categoryId": 2,
+                "description": "特色小吃，深夜食堂，营业至凌晨2点，满足你的夜宵需求",
+                "notice": "营业至凌晨2点，夜宵首选！",
+                "phone": "0571-88888802",
+                "avgPrice": 12.0,
+                "rating": 4.5,
+                "salesVolume": 800,
+                "status": 1,
+                "sortOrder": 90,
+                "isDeleted": 0,
+                "address": "",
+                "minOrderAmount": 0.0,
+                "createTime": "2026-03-14T13:52:11",
+                "updateTime": "2026-03-14T14:18:53"
+              },
+              {
+                "id": 4,
+                "name": "陈记甜品",
+                "logo": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&h=200&fit=crop",
+                "banner": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&h=300&fit=crop",
+                "categoryId": 4,
+                "description": "手工甜品，新鲜制作，每日限量供应，招牌杨枝甘露、芒果班戟",
+                "notice": "每日限量供应，先到先得",
+                "phone": "0571-88888804",
+                "avgPrice": 20.0,
+                "rating": 4.7,
+                "salesVolume": 500,
+                "status": 1,
+                "sortOrder": 80,
+                "isDeleted": 0,
+                "address": "",
+                "minOrderAmount": 0.0,
+                "createTime": "2026-03-14T13:52:11",
+                "updateTime": "2026-03-14T14:18:53"
+              }
+            ],
+            "page": 1,
+            "pageSize": 10,
+            "totalPages": 1
+          },
+          "timestamp": 1773625158213,
+          "success": true
+        },
+        "response_time": 0.016010522842407227,
+        "url": "http://localhost:9090/api/merchant/list",
+        "method": "GET"
+      },
+      "validations": [
+        {
+          "validation_type": "status_code",
+          "name": "HTTP Status Code",
+          "passed": true,
+          "message": "Status code is 200",
+          "expected": 200,
+          "actual": 200,
+          "timestamp": "2026-03-16T09:39:18.216806"
+        },
+        {
+          "validation_type": "response_time",
+          "name": "Response Time",
+          "passed": true,
+          "message": "Response time 0.016s is within limit",
+          "expected": "<= 2.0s",
+          "actual": "0.016s",
+          "timestamp": "2026-03-16T09:39:18.216822"
+        },
+        {
+          "validation_type": "schema",
+          "name": "Schema (pagination)",
+          "passed": false,
+          "message": "Response does not match pagination schema",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.220598"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: list",
+          "passed": false,
+          "message": "Response body missing field: list",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.221086"
+        },
+        {
+          "validation_type": "data_integrity",
+          "name": "Required Field: total",
+          "passed": false,
+          "message": "Response body missing field: total",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:18.221599"
+        }
+      ],
+      "performance": {
+        "response_time": 0.016010522842407227,
+        "request_size": 0,
+        "response_size": 0,
+        "dns_lookup_time": 0.0,
+        "connection_time": 0.0,
+        "ssl_handshake_time": 0.0,
+        "ttfb": 0.0
+      },
+      "start_time": "2026-03-16T09:39:18.199943",
+      "end_time": "2026-03-16T09:39:18.222135",
+      "duration": 0.022192,
+      "error_message": "",
+      "error_traceback": "",
+      "tags": [
+        "merchant",
+        "list",
+        "positive"
+      ],
+      "priority": "high",
+      "is_success": false,
+      "failed_validations_count": 3
+    },
+    {
+      "test_id": "Merchant API Tests_get_merchant_detail_1773625158222",
+      "test_name": "get_merchant_detail",
+      "test_suite": "Merchant API Tests",
+      "description": "Test getting merchant details",
+      "status": "error",
+      "method": "",
+      "endpoint": "",
+      "request_headers": {},
+      "request_body": null,
+      "response": null,
+      "validations": [],
+      "performance": null,
+      "start_time": "2026-03-16T09:39:18.222290",
+      "end_time": "2026-03-16T09:39:24.318046",
+      "duration": 6.095756,
+      "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/merchant/1 (Caused by ResponseError('too many 500 error responses'))",
+      "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/merchant/1 (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/merchant/1 (Caused by ResponseError('too many 500 error responses'))\n",
+      "tags": [
+        "merchant",
+        "detail",
+        "positive"
+      ],
+      "priority": "high",
+      "is_success": false,
+      "failed_validations_count": 0
+    },
+    {
+      "test_id": "Product API Tests_list_products_1773625164319",
+      "test_name": "list_products",
+      "test_suite": "Product API Tests",
+      "description": "Test listing products",
+      "status": "error",
+      "method": "",
+      "endpoint": "",
+      "request_headers": {},
+      "request_body": null,
+      "response": null,
+      "validations": [],
+      "performance": null,
+      "start_time": "2026-03-16T09:39:24.319936",
+      "end_time": "2026-03-16T09:39:30.439883",
+      "duration": 6.119947,
+      "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/list (Caused by ResponseError('too many 500 error responses'))",
+      "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/list (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/list (Caused by ResponseError('too many 500 error responses'))\n",
+      "tags": [
+        "product",
+        "list",
+        "positive"
+      ],
+      "priority": "high",
+      "is_success": false,
+      "failed_validations_count": 0
+    },
+    {
+      "test_id": "Product API Tests_get_product_detail_1773625170440",
+      "test_name": "get_product_detail",
+      "test_suite": "Product API Tests",
+      "description": "Test getting product details",
+      "status": "error",
+      "method": "",
+      "endpoint": "",
+      "request_headers": {},
+      "request_body": null,
+      "response": null,
+      "validations": [],
+      "performance": null,
+      "start_time": "2026-03-16T09:39:30.440186",
+      "end_time": "2026-03-16T09:39:36.564167",
+      "duration": 6.123981,
+      "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/1 (Caused by ResponseError('too many 500 error responses'))",
+      "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/1 (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/product/1 (Caused by ResponseError('too many 500 error responses'))\n",
+      "tags": [
+        "product",
+        "detail",
+        "positive"
+      ],
+      "priority": "high",
+      "is_success": false,
+      "failed_validations_count": 0
+    },
+    {
+      "test_id": "Order API Tests_create_order_1773625176566",
+      "test_name": "create_order",
+      "test_suite": "Order API Tests",
+      "description": "Test creating a new order",
+      "status": "error",
+      "method": "",
+      "endpoint": "",
+      "request_headers": {},
+      "request_body": null,
+      "response": null,
+      "validations": [],
+      "performance": null,
+      "start_time": "2026-03-16T09:39:36.566276",
+      "end_time": "2026-03-16T09:39:42.672540",
+      "duration": 6.106264,
+      "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/order/create (Caused by ResponseError('too many 500 error responses'))",
+      "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/order/create (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 418, in test_endpoint\n    response = self.http_client.post(endpoint, json_data=request_body, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 200, in post\n    return self._make_request(\"POST\", endpoint, **kwargs)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/order/create (Caused by ResponseError('too many 500 error responses'))\n",
+      "tags": [
+        "order",
+        "create",
+        "positive"
+      ],
+      "priority": "critical",
+      "is_success": false,
+      "failed_validations_count": 0
+    },
+    {
+      "test_id": "Order API Tests_list_orders_1773625182673",
+      "test_name": "list_orders",
+      "test_suite": "Order API Tests",
+      "description": "Test listing user orders",
+      "status": "failed",
+      "method": "GET",
+      "endpoint": "/api/order/list",
+      "request_headers": {},
+      "request_body": null,
+      "response": {
+        "status_code": 401,
+        "headers": {
+          "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+          "Content-Type": "application/json",
+          "Transfer-Encoding": "chunked",
+          "Date": "Mon, 16 Mar 2026 01:39:42 GMT",
+          "Keep-Alive": "timeout=60",
+          "Connection": "keep-alive"
+        },
+        "body": {
+          "code": 401,
+          "message": "No login credentials provided",
+          "timestamp": 1773625182681,
+          "success": false
+        },
+        "response_time": 0.009947538375854492,
+        "url": "http://localhost:9090/api/order/list",
+        "method": "GET"
+      },
+      "validations": [
+        {
+          "validation_type": "status_code",
+          "name": "HTTP Status Code",
+          "passed": false,
+          "message": "Expected status code 200, but got 401",
+          "expected": 200,
+          "actual": 401,
+          "timestamp": "2026-03-16T09:39:42.684312"
+        },
+        {
+          "validation_type": "response_time",
+          "name": "Response Time",
+          "passed": true,
+          "message": "Response time 0.010s is within limit",
+          "expected": "<= 2.0s",
+          "actual": "0.010s",
+          "timestamp": "2026-03-16T09:39:42.684869"
+        },
+        {
+          "validation_type": "schema",
+          "name": "Schema (pagination)",
+          "passed": false,
+          "message": "Response does not match pagination schema",
+          "expected": null,
+          "actual": null,
+          "timestamp": "2026-03-16T09:39:42.693105"
+        }
+      ],
+      "performance": {
+        "response_time": 0.009947538375854492,
+        "request_size": 0,
+        "response_size": 0,
+        "dns_lookup_time": 0.0,
+        "connection_time": 0.0,
+        "ssl_handshake_time": 0.0,
+        "ttfb": 0.0
+      },
+      "start_time": "2026-03-16T09:39:42.673046",
+      "end_time": "2026-03-16T09:39:42.693671",
+      "duration": 0.020625,
+      "error_message": "",
+      "error_traceback": "",
+      "tags": [
+        "order",
+        "list",
+        "positive"
+      ],
+      "priority": "high",
+      "is_success": false,
+      "failed_validations_count": 2
+    },
+    {
+      "test_id": "Health Check Tests_api_info_1773625183519",
+      "test_name": "api_info",
+      "test_suite": "Health Check Tests",
+      "description": "Test API info endpoint",
+      "status": "error",
+      "method": "",
+      "endpoint": "",
+      "request_headers": {},
+      "request_body": null,
+      "response": null,
+      "validations": [],
+      "performance": null,
+      "start_time": "2026-03-16T09:39:43.519789",
+      "end_time": "2026-03-16T09:39:49.607000",
+      "duration": 6.087211,
+      "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))",
+      "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))\n",
+      "tags": [
+        "info",
+        "monitoring"
+      ],
+      "priority": "low",
+      "is_success": false,
+      "failed_validations_count": 0
+    }
+  ],
+  "slow_tests": [],
+  "metadata": {
+    "environment": "dev",
+    "base_url": "http://localhost:9090",
+    "framework_version": "1.0.0"
+  }
+}

@@ -1,3 +1,21 @@
+/**
+ * 路由配置模块
+ *
+ * 使用React Router v6配置应用路由，包含：
+ * - 用户端路由（首页、店铺、购物车、订单等）
+ * - 商户端路由（仪表盘、订单管理、菜品管理等）
+ * - 管理端路由（用户管理、商户管理、系统设置等）
+ * - 认证路由（登录、注册、找回密码）
+ *
+ * 特性：
+ * - 懒加载优化首屏性能
+ * - 路由守卫控制访问权限
+ * - 错误边界处理组件异常
+ * - 加载状态骨架屏
+ *
+ * @module router
+ */
+
 import { createBrowserRouter, Navigate, Outlet, Link } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { PageSkeleton } from '@/components/ui/PageSkeleton';
@@ -43,12 +61,20 @@ const AdminUserManagement = lazy(() => import('@/pages/admin/UserManagement').th
 const AdminMerchantManagement = lazy(() => import('@/pages/admin/MerchantManagement').then(m => ({ default: m.MerchantManagement })));
 const AdminSettings = lazy(() => import('@/pages/admin/Settings').then(m => ({ default: m.AdminSettings })));
 
-// 加载状态组件
+/**
+ * 页面加载状态组件
+ * @param props.type 骨架屏类型
+ */
 function PageLoader({ type }: { type?: 'home' | 'store' | 'orders' | 'profile' | 'dashboard' }) {
   return <PageSkeleton type={type} />;
 }
 
-// 用户布局
+/**
+ * 用户端布局组件
+ *
+ * 包含顶部导航、主内容区和底部导航栏
+ * 使用懒加载和错误边界优化用户体验
+ */
 function UserLayout() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -65,7 +91,11 @@ function UserLayout() {
   );
 }
 
-// 无布局页面（登录、注册等）
+/**
+ * 认证页面布局组件
+ *
+ * 用于登录、注册等无导航栏的页面
+ */
 function AuthLayout() {
   return (
     <ErrorBoundary>
@@ -76,7 +106,12 @@ function AuthLayout() {
   );
 }
 
-// 商家布局
+/**
+ * 商户端布局组件
+ *
+ * 包含侧边导航栏和主内容区
+ * 使用MerchantGuard进行权限验证
+ */
 function MerchantLayout() {
   return (
     <MerchantGuard>
@@ -120,7 +155,12 @@ function MerchantLayout() {
   );
 }
 
-// 管理员布局
+/**
+ * 管理端布局组件
+ *
+ * 包含侧边导航栏和主内容区
+ * 使用AdminGuard进行管理员权限验证
+ */
 function AdminLayout() {
   return (
     <AdminGuard>
@@ -164,6 +204,19 @@ function AdminLayout() {
   );
 }
 
+/**
+ * 应用路由配置
+ *
+ * 路由结构：
+ * - / (用户端)
+ *   - /login, /register, /forgot-password (认证)
+ *   - /stores, /store/:id (店铺)
+ *   - /cart, /checkout, /payment/:orderId (购物车/支付)
+ *   - /orders, /order/:id (订单)
+ *   - /profile, /addresses, /notifications (个人中心)
+ * - /merchant (商户端，需商户权限)
+ * - /admin (管理端，需管理员权限)
+ */
 export const router = createBrowserRouter([
   {
     path: '/',

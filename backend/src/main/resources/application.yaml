@@ -1,0 +1,156 @@
+# ============================================
+# 基础配置文件 (application.yaml)
+# ============================================
+# 配置原则：
+# 1. 只包含所有环境通用的基础配置
+# 2. 不包含敏感信息
+# 3. 使用环境变量覆盖默认值
+# 4. 具体环境配置在 application-{profile}.yaml 中
+# ============================================
+
+spring:
+  application:
+    name: campus-order
+  
+  # 默认激活开发环境，可通过环境变量覆盖
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  
+  # 统一的多部分文件上传配置
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: ${MAX_FILE_SIZE:10MB}
+      max-request-size: ${MAX_REQUEST_SIZE:10MB}
+      file-size-threshold: 0
+  
+  # Jackson 序列化配置
+  jackson:
+    time-zone: ${TIMEZONE:GMT+8}
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+  
+  # 缓存配置
+  cache:
+    type: redis
+    redis:
+      time-to-live: ${CACHE_TTL:3600000}
+      cache-null-values: true
+      key-prefix: "${CACHE_PREFIX:campus-order:}"
+      use-key-prefix: true
+
+# 服务器基础配置
+server:
+  port: ${SERVER_PORT:9090}
+  servlet:
+    context-path: /
+
+# SPA静态资源配置
+spa:
+  static-location: classpath:/static/
+
+# ============================================
+# 支付宝沙箱支付配置（仅保留此支付方式）
+# ============================================
+alipay:
+  app-id: ${ALIPAY_APP_ID:}
+  private-key: ${ALIPAY_PRIVATE_KEY:}
+  public-key: ${ALIPAY_PUBLIC_KEY:}
+  notify-url: ${ALIPAY_NOTIFY_URL:}
+  return-url: ${ALIPAY_RETURN_URL:}
+  sign-type: RSA2
+  charset: UTF-8
+  sandbox: ${ALIPAY_SANDBOX:true}
+
+# ============================================
+# 邮件服务配置
+# ============================================
+mail:
+  enabled: ${MAIL_ENABLED:true}
+  smtp:
+    host: ${MAIL_SMTP_HOST:smtp.qq.com}
+    port: ${MAIL_SMTP_PORT:465}
+    username: ${MAIL_SMTP_USERNAME:1850833838@qq.com}
+    password: ${MAIL_SMTP_PASSWORD:rttorosdydawdaff}
+    protocol: ${MAIL_SMTP_PROTOCOL:smtps}
+    ssl:
+      enabled: ${MAIL_SSL_ENABLED:true}
+      required: ${MAIL_SSL_REQUIRED:true}
+    auth: ${MAIL_AUTH:true}
+    connection-timeout: ${MAIL_CONNECTION_TIMEOUT:5000}
+    timeout: ${MAIL_TIMEOUT:5000}
+    write-timeout: ${MAIL_WRITE_TIMEOUT:5000}
+  from:
+    address: ${MAIL_FROM_ADDRESS:1850833838@qq.com}
+    name: ${MAIL_FROM_NAME:校园点餐系统}
+  verify-code:
+    subject: "校园点餐系统 - 验证码"
+    expire-minutes: 5
+
+# ============================================
+# 短信服务配置
+# ============================================
+sms:
+  provider: ${SMS_PROVIDER:mock}
+  enabled: ${SMS_ENABLED:false}
+  access-key-id: ${SMS_ACCESS_KEY_ID:}
+  access-key-secret: ${SMS_ACCESS_KEY_SECRET:}
+  sign-name: ${SMS_SIGN_NAME:}
+  aliyun:
+    endpoint: dysmsapi.aliyuncs.com
+    template:
+      verify-code: ${SMS_TEMPLATE_VERIFY:}
+      order-timeout: ${SMS_TEMPLATE_ORDER_TIMEOUT:}
+      payment-success: ${SMS_TEMPLATE_PAYMENT_SUCCESS:}
+      order-status-change: ${SMS_TEMPLATE_ORDER_STATUS:}
+      new-order: ${SMS_TEMPLATE_NEW_ORDER:}
+
+# ============================================
+# 文件上传配置
+# ============================================
+file:
+  upload-dir: ${FILE_UPLOAD_DIR:./uploads}
+  access-url: ${FILE_ACCESS_URL:}
+  max-size: ${FILE_MAX_SIZE:10485760}
+  allowed-extensions: ${FILE_ALLOWED_EXTENSIONS:jpg,jpeg,png,gif,bmp,webp,pdf,doc,docx,xls,xlsx}
+
+# ============================================
+# 限流配置
+# ============================================
+rate-limit:
+  enabled: ${RATE_LIMIT_ENABLED:true}
+  default-limit: ${RATE_LIMIT_DEFAULT:50}
+  default-period: ${RATE_LIMIT_PERIOD:1}
+
+# ============================================
+# Sa-Token配置（通用部分）
+# ============================================
+sa-token:
+  token-name: Authorization
+  token-prefix: Bearer
+  timeout: 2592000
+  activity-timeout: -1
+  is-concurrent: true
+  is-share: true
+  token-style: uuid
+  is-log: false
+  is-read-header: true
+  is-read-cookie: false
+
+# ============================================
+# 日志基础配置（级别在各环境配置中覆盖）
+# ============================================
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    max-size: 100MB
+    max-history: 30
+
+# ============================================
+# 应用信息
+# ============================================
+app:
+  version: 1.0.0
+  description: 校园点餐管理系统

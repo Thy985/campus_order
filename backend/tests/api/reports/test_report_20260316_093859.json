@@ -1,0 +1,204 @@
+{
+  "report_info": {
+    "title": "API Test Report",
+    "generated_at": "2026-03-16T09:38:59.325707",
+    "generator": "CampusOrder API Test Framework",
+    "version": "1.0.0"
+  },
+  "summary": {
+    "total_suites": 1,
+    "total_tests": 2,
+    "passed_tests": 1,
+    "failed_tests": 0,
+    "error_tests": 1,
+    "skipped_tests": 0,
+    "success_rate": 50.0,
+    "duration": 6.971625,
+    "start_time": "2026-03-16T09:38:52.353440",
+    "end_time": "2026-03-16T09:38:59.325065",
+    "performance_stats": {
+      "total_requests": 1,
+      "avg_response_time": 0.871,
+      "min_response_time": 0.871,
+      "max_response_time": 0.871,
+      "p50_response_time": 0.871,
+      "p90_response_time": 0.871,
+      "p95_response_time": 0.871,
+      "p99_response_time": 0.871
+    },
+    "metadata": {
+      "environment": "dev",
+      "base_url": "http://localhost:9090",
+      "framework_version": "1.0.0"
+    }
+  },
+  "suites": {
+    "Health Check Tests": {
+      "suite_name": "Health Check Tests",
+      "description": "Basic health check and connectivity tests",
+      "total_tests": 2,
+      "passed_tests": 1,
+      "failed_tests": 0,
+      "error_tests": 1,
+      "skipped_tests": 0,
+      "success_rate": 50.0,
+      "duration": 6.970497,
+      "start_time": "2026-03-16T09:38:52.354043",
+      "end_time": "2026-03-16T09:38:59.324540",
+      "environment": "dev",
+      "tags": [],
+      "performance_summary": {
+        "total_requests": 1,
+        "avg_response_time": 0.8709349632263184,
+        "min_response_time": 0.8709349632263184,
+        "max_response_time": 0.8709349632263184,
+        "p50_response_time": 0.8709349632263184,
+        "p90_response_time": 0.8709349632263184,
+        "p95_response_time": 0.8709349632263184,
+        "p99_response_time": 0.8709349632263184
+      },
+      "validation_summary": {
+        "status_code": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        "response_time": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        }
+      },
+      "test_cases": [
+        {
+          "test_id": "Health Check Tests_health_check_1773625132354",
+          "test_name": "health_check",
+          "test_suite": "Health Check Tests",
+          "description": "Test system health endpoint",
+          "status": "passed",
+          "method": "GET",
+          "endpoint": "/actuator/health",
+          "request_headers": {},
+          "request_body": null,
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "Content-Type": "application/json",
+              "Transfer-Encoding": "chunked",
+              "Date": "Mon, 16 Mar 2026 01:38:53 GMT",
+              "Keep-Alive": "timeout=60",
+              "Connection": "keep-alive"
+            },
+            "body": {
+              "status": "UP"
+            },
+            "response_time": 0.8709349632263184,
+            "url": "http://localhost:9090/actuator/health",
+            "method": "GET"
+          },
+          "validations": [
+            {
+              "validation_type": "status_code",
+              "name": "HTTP Status Code",
+              "passed": true,
+              "message": "Status code is 200",
+              "expected": 200,
+              "actual": 200,
+              "timestamp": "2026-03-16T09:38:53.226458"
+            },
+            {
+              "validation_type": "response_time",
+              "name": "Response Time",
+              "passed": true,
+              "message": "Response time 0.871s is within limit",
+              "expected": "<= 1.0s",
+              "actual": "0.871s",
+              "timestamp": "2026-03-16T09:38:53.226478"
+            }
+          ],
+          "performance": {
+            "response_time": 0.8709349632263184,
+            "request_size": 0,
+            "response_size": 0,
+            "dns_lookup_time": 0.0,
+            "connection_time": 0.0,
+            "ssl_handshake_time": 0.0,
+            "ttfb": 0.0
+          },
+          "start_time": "2026-03-16T09:38:52.354901",
+          "end_time": "2026-03-16T09:38:53.226487",
+          "duration": 0.871586,
+          "error_message": "",
+          "error_traceback": "",
+          "tags": [
+            "health",
+            "monitoring"
+          ],
+          "priority": "critical",
+          "is_success": true,
+          "failed_validations_count": 0
+        },
+        {
+          "test_id": "Health Check Tests_api_info_1773625133226",
+          "test_name": "api_info",
+          "test_suite": "Health Check Tests",
+          "description": "Test API info endpoint",
+          "status": "error",
+          "method": "",
+          "endpoint": "",
+          "request_headers": {},
+          "request_body": null,
+          "response": null,
+          "validations": [],
+          "performance": null,
+          "start_time": "2026-03-16T09:38:53.226597",
+          "end_time": "2026-03-16T09:38:59.324152",
+          "duration": 6.097555,
+          "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))",
+          "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))\n",
+          "tags": [
+            "info",
+            "monitoring"
+          ],
+          "priority": "low",
+          "is_success": false,
+          "failed_validations_count": 0
+        }
+      ]
+    }
+  },
+  "failed_tests": [
+    {
+      "test_id": "Health Check Tests_api_info_1773625133226",
+      "test_name": "api_info",
+      "test_suite": "Health Check Tests",
+      "description": "Test API info endpoint",
+      "status": "error",
+      "method": "",
+      "endpoint": "",
+      "request_headers": {},
+      "request_body": null,
+      "response": null,
+      "validations": [],
+      "performance": null,
+      "start_time": "2026-03-16T09:38:53.226597",
+      "end_time": "2026-03-16T09:38:59.324152",
+      "duration": 6.097555,
+      "error_message": "HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))",
+      "error_traceback": "urllib3.exceptions.ResponseError: too many 500 error responses\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 644, in send\n    resp = conn.urlopen(\n        method=request.method,\n    ...<9 lines>...\n        chunked=chunked,\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 942, in urlopen\n    return self.urlopen(\n           ~~~~~~~~~~~~^\n        method,\n        ^^^^^^^\n    ...<13 lines>...\n        **response_kw,\n        ^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\connectionpool.py\", line 932, in urlopen\n    retries = retries.increment(method, url, response=response, _pool=self)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3\\util\\retry.py\", line 535, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\comprehensive_api_test.py\", line 416, in test_endpoint\n    response = self.http_client.get(endpoint, params=request_params, headers=headers)\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 185, in get\n    return self._make_request(\"GET\", endpoint, params=params, headers=headers)\n           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\study\\project\\campus-order\\backend\\tests\\api\\utils\\http_client.py\", line 141, in _make_request\n    response = self.session.request(\n        method=method,\n    ...<3 lines>...\n        **kwargs\n    )\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\sessions.py\", line 703, in send\n    r = adapter.send(request, **kwargs)\n  File \"C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests\\adapters.py\", line 668, in send\n    raise RetryError(e, request=request)\nrequests.exceptions.RetryError: HTTPConnectionPool(host='localhost', port=9090): Max retries exceeded with url: /api/info (Caused by ResponseError('too many 500 error responses'))\n",
+      "tags": [
+        "info",
+        "monitoring"
+      ],
+      "priority": "low",
+      "is_success": false,
+      "failed_validations_count": 0
+    }
+  ],
+  "slow_tests": [],
+  "metadata": {
+    "environment": "dev",
+    "base_url": "http://localhost:9090",
+    "framework_version": "1.0.0"
+  }
+}
