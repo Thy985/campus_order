@@ -50,14 +50,14 @@ public interface PaymentMapper {
     /**
      * 根据支付单号查询
      */
-    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, is_deleted, create_time, update_time " +
+    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, version, is_deleted, create_time, update_time " +
             "FROM payment WHERE payment_no = #{paymentNo} AND is_deleted = 0")
     Payment selectByPaymentNo(@Param("paymentNo") String paymentNo);
 
     /**
      * 根据交易号查询
      */
-    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, is_deleted, create_time, update_time " +
+    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, version, is_deleted, create_time, update_time " +
             "FROM payment WHERE trade_no = #{tradeNo} AND is_deleted = 0")
     Payment selectByTradeNo(@Param("tradeNo") String tradeNo);
 
@@ -83,14 +83,14 @@ public interface PaymentMapper {
     /**
      * 查询用户支付记录 - 使用子查询避免JOIN的字段映射问题
      */
-    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, is_deleted, create_time, update_time " +
+    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, version, is_deleted, create_time, update_time " +
             "FROM payment WHERE order_id IN (SELECT id FROM `order` WHERE user_id = #{userId}) AND is_deleted = 0 ORDER BY create_time DESC")
     List<Payment> selectByUserId(@Param("userId") Long userId);
 
     /**
      * 查询超时的未支付支付记录
      */
-    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, is_deleted, create_time, update_time " +
+    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, version, is_deleted, create_time, update_time " +
             "FROM payment WHERE status = #{status} AND create_time < #{expireTime} AND is_deleted = 0")
     List<Payment> selectExpiredPayments(@Param("status") Integer status, @Param("expireTime") java.time.LocalDateTime expireTime);
 
@@ -107,7 +107,7 @@ public interface PaymentMapper {
      * 查询需要主动查询的支付记录（支付中但超过2分钟的）
      * 用于主动向支付宝查询支付结果
      */
-    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, is_deleted, create_time, update_time " +
+    @Select("SELECT id, order_no, order_id, payment_no, user_id, amount, channel, status, trade_no, pay_time, callback_time, version, is_deleted, create_time, update_time " +
             "FROM payment WHERE status = #{status} AND create_time > #{startTime} AND is_deleted = 0")
     List<Payment> selectPaymentsForQuery(@Param("status") Integer status, @Param("startTime") java.time.LocalDateTime startTime);
 }

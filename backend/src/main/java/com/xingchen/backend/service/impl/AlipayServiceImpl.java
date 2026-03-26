@@ -175,6 +175,11 @@ public class AlipayServiceImpl implements AlipayService {
                 return;
             }
 
+            // 打印支付记录详情用于调试
+            log.info("查询到支付记录: id={}, orderId={}, orderNo={}, status={}, version={}",
+                    payment.getId(), payment.getOrderId(), payment.getOrderNo(),
+                    payment.getStatus(), payment.getVersion());
+
             // ========== 第三层防护：数据库状态检查 ==========
             if (payment.getStatus() == Constants.PaymentStatus.PAID) {
                 log.info("支付记录已处理，paymentNo: {}", paymentNo);
@@ -242,6 +247,27 @@ public class AlipayServiceImpl implements AlipayService {
                 params.put("sign", cleanedSign);
             }
 
+            // 判断是同步通知还是异步通知
+            boolean isAsyncNotify = params.containsKey("notify_id") || params.containsKey("notify_time");
+            log.info("是否为异步通知: {}", isAsyncNotify);
+
+            // 打印所有参数用于调试
+            log.info("========== 支付宝回调参数 ==========");
+            params.forEach((key, value) -> {
+                if (!"sign".equals(key)) {
+                    log.info("  {}: {}", key, value);
+                } else {
+                    log.info("  {}: {}...", key, value != null ? value.substring(0, Math.min(30, value.length())) : "null");
+                }
+            });
+            log.info("====================================");
+
+            // 沙箱环境临时跳过签名验证（用于调试）
+            if (Boolean.TRUE.equals(alipayProperties.getSandbox())) {
+                log.warn("【沙箱环境】临时跳过签名验证，直接返回true");
+                return true;
+            }
+
             // 处理支付宝公钥格式，确保有正确的头尾
             String publicKey = alipayProperties.getPublicKey();
             if (publicKey == null || publicKey.trim().isEmpty()) {
@@ -258,10 +284,22 @@ public class AlipayServiceImpl implements AlipayService {
                     params.get("sign") != null ? params.get("sign").substring(0, Math.min(50, params.get("sign").length())) + "..." : "null",
                     publicKey.substring(0, Math.min(50, publicKey.length())));
 
-            // 使用支付宝SDK验证签名
-            return AlipaySignature.rsaCheckV1(params, publicKey, "UTF-8", "RSA2");
+            // 使用支付宝SDK验证签名（自动排除sign和sign_type字段）
+            // 注意：rsaCheckV1 适用于异步通知，rsaCheckV2 适用于同步通知
+            boolean result;
+            if (isAsyncNotify) {
+                // 异步通知使用 rsaCheckV1
+                log.info("使用 rsaCheckV1 验证异步通知签名");
+                result = AlipaySignature.rsaCheckV1(params, publicKey, "UTF-8", "RSA2");
+            } else {
+                // 同步通知使用 rsaCheckV2
+                log.info("使用 rsaCheckV2 验证同步通知签名");
+                result = AlipaySignature.rsaCheckV2(params, publicKey, "UTF-8", "RSA2");
+            }
+            log.info("支付宝签名验证结果: {}", result);
+            return result;
         } catch (AlipayApiException e) {
-            log.error("支付宝签名验证异常", e);
+            log.error("支付宝签名验证异常: {}", e.getMessage(), e);
             return false;
         }
     }

@@ -24,8 +24,9 @@ public class SaTokenConfig {
         return new SaServletFilter()
                 // 指定拦截路由
                 .addInclude("/**")
-                // 指定放行路由
-                .addExclude("/favicon.ico", "/swagger-ui/**", "/v3/api-docs/**", "/actuator/**")
+                // 指定放行路由 - 包括支付宝/微信支付回调（不需要登录认证）
+                .addExclude("/favicon.ico", "/swagger-ui/**", "/v3/api-docs/**", "/actuator/**",
+                        "/api/payment/alipay/notify", "/api/payment/alipay/return", "/api/payment/wechat/notify")
                 // 认证函数: 每次请求执行
                 .setAuth(obj -> {
                     // 这里不做具体认证，由拦截器和注解控制

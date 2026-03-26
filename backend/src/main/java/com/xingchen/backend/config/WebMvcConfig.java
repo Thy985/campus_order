@@ -43,6 +43,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/api/auth/verify-code",
                         "/api/auth/check",
                         "/api/public/**",
+                        "/api/payment/alipay/notify",
+                        "/api/payment/alipay/return",
+                        "/api/payment/wechat/notify",
                         "/swagger-ui/**",
                         "/v3/api-docs/**",
                         "/actuator/**"
@@ -55,6 +58,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/api/auth/register",
                         "/api/auth/verify-code",
                         "/api/public/**",
+                        "/api/payment/alipay/notify",
+                        "/api/payment/alipay/return",
+                        "/api/payment/wechat/notify",
                         "/swagger-ui/**",
                         "/v3/api-docs/**",
                         "/actuator/**"

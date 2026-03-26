@@ -115,16 +115,17 @@ logging:
 alipay:
   # 应用ID
   app-id: ${ALIPAY_APP_ID:9021000161667139}
-  # 应用私钥
-  private-key: ${ALIPAY_PRIVATE_KEY:MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCK7VzGyPMyAsM2Gb8IdPU0fiIsKdVJyrn4VKdVGZXPrFqIH4W+3moHZ2bLJfoQgHIQnHwycrncFclYAhnQDAI02RS1tCDTax7oz5j+pUyTWgi3+37UzVWPif9THczmmCin8BPeKCxvhRhLxCYCgcjbvpYO53iWa/+pBz+1hsa/ZUp8Lif2Qvx3h3iVCj6FKgQfoVTFyw03RjeP4WJWXgaz11qmFcH4Oog9H7FHhy4hig60aVz6UFMuAe3UXYQV3fVoxIjYnGjmTuCaUv675idVlN/TFRJ1obNHEl3wQ5HfRN8eKs2T0Zdzvz6KEtBhSkrwRIVkUGFrOnqzD9K0XHGhAgMBAAECggEAXtfe36KuTHUQWe3HuflGsRhvMeE5SBBLV5pLRlCaMtXCVG3Yu85Rak6QIZ4CkqNtu6NpMnOaKQMCmr+MabjZBMUyWz3mrw7RYjTfiPDGT05G53udQaAQila2ZULR8JbuIoBGwAKDG3ssdAUrwchinIoHHZOuglqmhfl55+5j3qNBXNgLd/j5w8XtvXgoQfcOsVHMeeKBTFlwO1o94cj89+eCCoi0sSrwrjjoyY8r1+CGxhCfnc1XNb07aN74/+3Rtl8Ide98S9kcQztz1TRlvZuSdcMvxwAzKumUPN1jfMDa64V9PSPhgePQwZaOMcWLH+PENJLoZTJHxSqKsaEllQKBgQDBROFnOKd1xjE+6/B5rf+EkCoigvlNSucmbfi2dXd3Z+vbFrT2psNRRQwNSVYn+f4DaMa8+K33Cjxk3aSqpHOF4GN5IRn+YyZltTKWBmr4LkBZHasGTpqZt/83XP2aQyPRB3xNlAQgzygsjUJOopP76PLuJY0AgX+J2YO4yEu1twKBgQC4BRsNJlZSfP7PXqYe+zqVk2kt1YnTSuLKlt2sN0igoOozIirKVbUo94HDQRjUcuDgujluYOuB8vZC3XmnEZT/I038XaYHAJKIi5rH/xF2YPtBA9P+zt8sCLR7d6f9z7/ax2Rbpo8Ee4Llq3RBUL2AargEPnEvTeGRq6OqHeRTZwKBgQCYJeqwwQgMDpesKj/o+tLCAGA7RRKQB5yLQ13d/gGrrdMeafTSjBwNOacwOoCp/gM7mduC3t7NMXC0E0zTzZzoUurca/OzsUiEHy6QrsK9WGPuBA4ka/MHerNfWUSIkbx7jUINLK5HSe4djKMblp+bXBsK4eLr+AZ4dhVdfckkZwKBgFQWaS0SFqHs4hbqHijMDhIpYQeDq040yvteAv9d578WqM4iz8DTd0u4BcCuL2Vs9RtbnUC14wfneOZHA/72xsnrXQhz1pkehtcES/8Vq+oXGNi1ohqud0ZM2AQPQmF1nCqhsFc8/d9DfSXrudzawy06FspBqkC+atPAxbHHpP0DAoGADwDGe34LHVdqRRWfFZi04lORDtsiby1ZhwVsHLnpWA/afR10NqS1gj7bYglP50ybrEtu6kq862IbqB6+Cm/vr178jaPn9gKyHhNDu8224oFU0zq1gaMF2iR7zYMEUx72T4zu48S9DZgdH403ThvDOjyqVzkbKFVmhXd2eejqoP0=}
-  # 支付宝公钥
+  # 应用私钥（用于创建支付请求）
+  private-key: ${ALIPAY_PRIVATE_KEY:MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCt0ua5T2XiGBP3CqYtT2+azBcld3ahQs8q48blOd/MxLyR4PpHuvY4gIoaLD8rXZ2EDRvfgGTNJw4haxrPh0nOPBjV8i3nOzdK+T4hW92Zbp2V3H7xBJEG+Jy7c6uQCFBhEERnc1a/edpv5kcDhF3mbNG1kHb20jaKtfwQc0fymkD/MCwUKrHxtQKEyOd/owTF+sIXCeiIwRvi3y4yt4m5mj4Mdih/kHWE/xX1f0FyRKQM4sgPNKYkvM8q8KhCmftcJZ5jtrLq1kRODh7eKbTSEHpOZgQeC1Gx+h2TMnSFb3WSUcp+q/v/K4Gf3XWSIF3Ee/d4SdW75ss/kSMwsszTAgMBAAECggEBAJ8G0ls7TqTZDnr3XS0a/aoLiimW8At9CffdR/wzRJMccsCrqY6yd80dnDtxu6E7Fn7XV2bVGmOulXjxeiffSCDMTpR96o0gWefXu4XdfBGBZ97RSbnLSbus/AdrPcyaLp9+uHZEyVqIatXxQYrwMNA9Qmbv8kbB73BcKm4KagqCnEfBhfViOfp8MRfNsQ/m+jKgZSmFWq5ZK01kTX5V2hjzV8O1rvXR2f62vfPLwmG13PactxFUEY90HFI/l3ouyDTvowqEP89a7Dys11Z6aQpDmFtG5eMD1KcCzn+I1gZLMquqLAE6X0hv8or+bqtTcYIHxQQGEtKO6kw/kfk5sPECgYEA78hDqFradWYkNucfOVYXqnrSZuu7HX+MHJJMePN/+TRtqmiSQwLVYrITyEG9XS/n/4WNlMINAiXO31WRfyqhj9wH8oGQuOwxLx975xDfVxlEPCywuS5GZNCgSQayDHX8jIJOboS8cX+IKaNXd63WAaBjtgusW4z6O1OlVJsyUJ8CgYEAuZSXqR9H0cie9sGpREj8ZUs9kZT/IzbTHNmNyRtNslLsNE+2SP1JX5cDQxGFL1bP/1M6MSHY3sYgmf6rDyBlx/2tuJ1mwR21LluGqgsxapIWH0aB2wDxaHL0/dxN5fnoUmH6dnWTJLtvAIgEddyP2Wo4/9WvzI0AthiKIiVzU00CgYA3xSGPZ8pF4gLsTidiA5cvjK+hRpTX0JG7F3/35dLPGJWlO/tA4MjW0sptGnU71mekc+CxR80Uwcxy/4j+xeCcADZM/ju19yGdbzo3TSJVNMg9Irvb5lpzGl8dfRQud8bMu4YYiID3+Qynepleea075Z0re12UUZ7l65eZrRsvywKBgBH+0bIJoXo7PQbqgpJnjWn5INBEJXVxtIkAo5oTtrYLCnKMJD3xqbLGPv+67DJJ9cNpe6QWBySbC8BDDK1b0+LPu4/CW5twWQhUwbsteK4/2jtQJ/lnnwEk3JLdUQRy9k8+xv3DqvAN6NahWeVf7OcFQN+2BeUM6zu9J2/mN8elAoGAFNRVsenYMri4R6shxx6/JBkcj/xlNEFTpM8imYGDRSPR7bt/RIdkKNJRfeYDLyU9WJ3C1xYEYZ6v4uSvPFxH0o06BtxUQUjkkxdifhbYjf4n0qCgE8rRkZGxSHdEZ4IlxGusUaEwf3S3AoF8Uc3et2Kk6ip68Z7Hkt3RQFRtEZM=}
+  # 支付宝公钥（用于验证回调签名，从支付宝开放平台获取）
+  # 注意：不是应用公钥，而是支付宝公钥
   public-key: ${ALIPAY_PUBLIC_KEY:MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqPeqT9A+7o4a+ungooWQtcL88TacgEUj0Cll5RUbekcN1PM8YDcVgFsmU4mwAzj85eRbaDqmvlW/0f9QkvWngHaHh5Cdzemjw7aPnoSGGWxTx1+7I7EziifVJpo99WOLLGEfy0v6YWZPoKKkNtkZERTCPMMZGqz/A8Tkmn5eRn4dQl+gLjjDscOw0hFegNK64XaPitiZv7JZY2JEhuQdZUyJnvCYdpHiHRC1pE7AwO0nZvUljW4n1aE9bV86LbbinzjnEgSYjHQE6w8+FJHe+V21nWWjWpQH4Xhp+0OkeqibLy7DsNb3gnhEfPWH4Tyy4tRN9xJ3fw3e2RIsxmHyxwIDAQAB}
   # 开发环境回调地址说明：
   # 1. 本地开发测试：使用 localhost:9090（默认值）
-  # 2. 需要外网访问（如支付宝沙箱回调）：使用内网穿透工具（ngrok/cpolar）
-  #    示例：ngrok http 9090，然后将 https://xxx.ngrok.io/api/payment/alipay/notify 填入环境变量
-  notify-url: ${ALIPAY_NOTIFY_URL:http://28f7048b.r36.cpolar.top/api/payment/alipay/notify}
-  return-url: ${ALIPAY_RETURN_URL:http://28f7048b.r36.cpolar.top/api/payment/alipay/return}
+  # 2. 需要外网访问（如支付宝沙箱回调）：使用内网穿透工具（ngrok/cpolar/花生壳）
+  #    当前使用 ngrok：https://lindsey-nonsubscribing-bumblingly.ngrok-free.dev
+  notify-url: ${ALIPAY_NOTIFY_URL:https://lindsey-nonsubscribing-bumblingly.ngrok-free.dev/api/payment/alipay/notify}
+  return-url: ${ALIPAY_RETURN_URL:https://lindsey-nonsubscribing-bumblingly.ngrok-free.dev/api/payment/alipay/return}
   sandbox: true
 
 # ============================================
@@ -149,5 +150,15 @@ sa-token:
   # 开发环境Token有效期较短，方便测试
   timeout: 86400
   is-log: true
+
+# ============================================
+# MyBatis-Flex 配置
+# ============================================
+mybatis-flex:
+  configuration:
+    # 开启驼峰命名自动映射（将数据库下划线命名映射为Java驼峰命名）
+    map-underscore-to-camel-case: true
+    # 打印SQL语句（开发环境）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 

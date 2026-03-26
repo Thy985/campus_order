@@ -84,6 +84,7 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setAmount(request.getAmount());
         payment.setChannel(Constants.PaymentChannel.ALIPAY); // 固定为支付宝
         payment.setStatus(Constants.PaymentStatus.UNPAID);
+        payment.setVersion(0); // 设置乐观锁初始版本号
         payment.setIsDeleted(Constants.DeleteFlag.NOT_DELETED);
         payment.setCreateTime(LocalDateTime.now());
         payment.setUpdateTime(LocalDateTime.now());
